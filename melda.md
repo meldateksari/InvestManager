@@ -1,1 +1,1 @@
-hello
+npx create-next-app@latest investmanager
