@@ -27,107 +27,107 @@ const InvestmentSlider = () => {
   const investmentProducts: InvestmentProduct[] = [
     {
       id: 1,
-      name: "Altın",
-      symbol: "XAU/TRY",
-      price: "2.847,50 ₺",
+      name: "Gold",
+      symbol: "XAU/USD",
+      price: "$2,847.50",
       change: "+2.45%",
       changePercent: 2.45,
       icon: "🥇",
-      description: "Güvenli liman yatırımı",
-      volume: "125M ₺",
-      high24h: "2.851,20 ₺",
-      low24h: "2.820,10 ₺"
+      description: "Safe haven investment",
+      volume: "$125M",
+      high24h: "$2,851.20",
+      low24h: "$2,820.10"
     },
     {
       id: 2,
       name: "Bitcoin",
-      symbol: "BTC/TRY",
-      price: "2.874.650 ₺",
+      symbol: "BTC/USD",
+      price: "$94,650",
       change: "+5.21%",
       changePercent: 5.21,
       icon: "₿",
-      description: "Dijital altın",
-      volume: "2.5B ₺",
-      high24h: "2.890.000 ₺",
-      low24h: "2.750.000 ₺"
+      description: "Digital gold",
+      volume: "$2.5B",
+      high24h: "$96,000",
+      low24h: "$91,500"
     },
     {
       id: 3,
-      name: "Dolar",
-      symbol: "USD/TRY",
-      price: "34,25 ₺",
+      name: "US Dollar",
+      symbol: "DXY",
+      price: "106.25",
       change: "-0.12%",
       changePercent: -0.12,
       icon: "$",
-      description: "Küresel rezerv para birimi",
-      volume: "890M ₺",
-      high24h: "34,45 ₺",
-      low24h: "34,18 ₺"
+      description: "Global reserve currency",
+      volume: "$890M",
+      high24h: "106.45",
+      low24h: "106.18"
     },
     {
       id: 4,
       name: "Euro",
-      symbol: "EUR/TRY",
-      price: "36,89 ₺",
+      symbol: "EUR/USD",
+      price: "1.0889",
       change: "+0.75%",
       changePercent: 0.75,
       icon: "€",
-      description: "Avrupa para birimi",
-      volume: "670M ₺",
-      high24h: "37,02 ₺",
-      low24h: "36,65 ₺"
+      description: "European currency",
+      volume: "$670M",
+      high24h: "1.0902",
+      low24h: "1.0865"
     },
     {
       id: 5,
       name: "Ethereum",
-      symbol: "ETH/TRY",
-      price: "125.450 ₺",
+      symbol: "ETH/USD",
+      price: "$3,450",
       change: "+3.87%",
       changePercent: 3.87,
       icon: "Ξ",
-      description: "Akıllı kontrat platformu",
-      volume: "1.8B ₺",
-      high24h: "128.000 ₺",
-      low24h: "119.500 ₺"
+      description: "Smart contract platform",
+      volume: "$1.8B",
+      high24h: "$3,600",
+      low24h: "$3,295"
     },
     {
       id: 6,
-      name: "Gümüş",
-      symbol: "XAG/TRY",
-      price: "32,45 ₺",
+      name: "Silver",
+      symbol: "XAG/USD",
+      price: "$32.45",
       change: "+1.87%",
       changePercent: 1.87,
       icon: "🥈",
-      description: "Endüstriyel değerli metal",
-      volume: "85M ₺",
-      high24h: "32,89 ₺",
-      low24h: "31,95 ₺"
+      description: "Industrial precious metal",
+      volume: "$85M",
+      high24h: "$32.89",
+      low24h: "$31.95"
     },
     {
       id: 7,
-      name: "Sterlin",
-      symbol: "GBP/TRY",
-      price: "43,12 ₺",
+      name: "British Pound",
+      symbol: "GBP/USD",
+      price: "1.2612",
       change: "-0.34%",
       changePercent: -0.34,
       icon: "£",
-      description: "İngiliz para birimi",
-      volume: "450M ₺",
-      high24h: "43,45 ₺",
-      low24h: "42,88 ₺"
+      description: "British currency",
+      volume: "$450M",
+      high24h: "1.2645",
+      low24h: "1.2588"
     },
     {
       id: 8,
       name: "Dogecoin",
-      symbol: "DOGE/TRY",
-      price: "4,67 ₺",
+      symbol: "DOGE/USD",
+      price: "$0.467",
       change: "+8.92%",
       changePercent: 8.92,
       icon: "🐕",
       description: "Meme coin",
-      volume: "650M ₺",
-      high24h: "4,89 ₺",
-      low24h: "4,25 ₺"
+      volume: "$650M",
+      high24h: "$0.489",
+      low24h: "$0.425"
     }
   ];
 
@@ -148,15 +148,17 @@ const InvestmentSlider = () => {
   };
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 py-16">
+    <div className="relative w-full bg-gradient-to-br from-dark-navy via-accent-bg to-dark-blue py-16" style={{
+      background: 'linear-gradient(135deg, var(--color-dark-navy) 0%, var(--color-medium-blue) 50%, var(--color-dark-blue) 100%)'
+    }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-white mb-4">
-            Canlı Piyasa Verileri
+            Live Market Data
           </h2>
           <p className="text-xl text-blue-200">
-            Gerçek zamanlı fiyatlar ve güncel yatırım fırsatları
+            Real-time prices and current investment opportunities
           </p>
         </div>
 
@@ -165,14 +167,20 @@ const InvestmentSlider = () => {
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 backdrop-blur-sm text-light p-3 rounded-full transition-all duration-300 hover:scale-110 hover:bg-white/20"
+            style={{
+              backgroundColor: 'rgba(250, 250, 255, 0.1)'
+            }}
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 backdrop-blur-sm text-light p-3 rounded-full transition-all duration-300 hover:scale-110 hover:bg-white/20"
+            style={{
+              backgroundColor: 'rgba(250, 250, 255, 0.1)'
+            }}
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -206,9 +214,14 @@ const InvestmentSlider = () => {
                   <div className="relative">
                     {/* Main Card */}
                     <motion.div
-                      className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:border-blue-400/50 transition-all duration-300 cursor-pointer"
+                      className="backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 cursor-pointer"
+                      style={{
+                        backgroundColor: 'rgba(250, 250, 255, 0.1)',
+                        borderColor: 'rgba(250, 250, 255, 0.2)'
+                      }}
                       whileHover={{
-                        boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25)"
+                        boxShadow: "0 25px 50px -12px rgba(39, 52, 105, 0.25)",
+                        borderColor: 'var(--color-light-purple)'
                       }}
                       onClick={() => handleProductClick(product.name)}
                     >
@@ -216,7 +229,7 @@ const InvestmentSlider = () => {
                       <div className="flex items-center justify-between mb-4">
                         <div className="text-4xl">{product.icon}</div>
                         <div className="text-right">
-                          <div className="text-blue-200 text-sm font-medium">
+                          <div className="text-sm font-medium" style={{ color: 'var(--color-light-purple)' }}>
                             {product.symbol}
                           </div>
                         </div>
@@ -268,19 +281,19 @@ const InvestmentSlider = () => {
                         >
                           <div className="grid grid-cols-2 gap-3 text-sm">
                             <div>
-                              <span className="text-gray-500">24s Yüksek:</span>
+                              <span className="text-gray-500">24h High:</span>
                               <div className="font-semibold text-gray-900">
                                 {product.high24h}
                               </div>
                             </div>
                             <div>
-                              <span className="text-gray-500">24s Düşük:</span>
+                              <span className="text-gray-500">24h Low:</span>
                               <div className="font-semibold text-gray-900">
                                 {product.low24h}
                               </div>
                             </div>
                             <div className="col-span-2">
-                              <span className="text-gray-500">24s Hacim:</span>
+                              <span className="text-gray-500">24h Volume:</span>
                               <div className="font-semibold text-gray-900">
                                 {product.volume}
                               </div>
@@ -288,7 +301,7 @@ const InvestmentSlider = () => {
                           </div>
                           
                           <button className="w-full mt-3 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                            Yatırım Yap
+                            Invest Now
                           </button>
                         </motion.div>
                       )}

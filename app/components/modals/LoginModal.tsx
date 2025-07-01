@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { auth, db } from '../../../lib/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 
 interface LoginModalProps {
@@ -17,6 +17,8 @@ const LoginModal = ({ isOpen, onClose, onToggleModal }: LoginModalProps) => {
     password: ''
   });
   const [loading, setLoading] = useState(false);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +44,6 @@ const LoginModal = ({ isOpen, onClose, onToggleModal }: LoginModalProps) => {
       if (userDoc.exists()) {
         console.log('Kullanıcı bilgileri:', userDoc.data());
         onClose();
-        alert('Giriş başarılı!');
       } else {
         console.error('Kullanıcı dökümanı bulunamadı');
         alert('Kullanıcı bilgileri eksik. Lütfen yönetici ile iletişime geçin.');
@@ -83,6 +84,41 @@ const LoginModal = ({ isOpen, onClose, onToggleModal }: LoginModalProps) => {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handlePasswordReset = async () => {
+    if (!formData.email.trim()) {
+      alert('Lütfen şifre sıfırlama için email adresinizi girin.');
+      return;
+    }
+
+    setResetLoading(true);
+    try {
+      const cleanEmail = formData.email.trim().toLowerCase();
+      await sendPasswordResetEmail(auth, cleanEmail);
+      setResetEmailSent(true);
+      alert('Şifre sıfırlama bağlantısı email adresinize gönderildi. Lütfen email kutunuzu kontrol edin.');
+    } catch (error: any) {
+      console.error('Şifre sıfırlama hatası:', error);
+      
+      let errorMessage = 'Şifre sıfırlama sırasında bir hata oluştu.';
+      
+      switch (error.code) {
+        case 'auth/user-not-found':
+          errorMessage = 'Bu email adresi ile kayıtlı bir kullanıcı bulunamadı.';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Geçersiz email formatı.';
+          break;
+        case 'auth/too-many-requests':
+          errorMessage = 'Çok fazla istek gönderildi. Lütfen daha sonra tekrar deneyin.';
+          break;
+      }
+      
+      alert(errorMessage);
+    } finally {
+      setResetLoading(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -131,9 +167,19 @@ const LoginModal = ({ isOpen, onClose, onToggleModal }: LoginModalProps) => {
           </div>
 
           <div className="flex justify-between items-center">
-            <a href="#" className="text-sm text-gray-600 hover:text-gray-900">
-              Forgot password?
-            </a>
+            <button 
+              type="button"
+              onClick={handlePasswordReset}
+              className="text-sm text-blue-600 hover:text-blue-800 bg-transparent border-none p-0 transform transition-all duration-300 hover:scale-105 disabled:opacity-50"
+              disabled={resetLoading || loading}
+            >
+              {resetLoading ? 'Gönderiliyor...' : 'Şifremi unuttum'}
+            </button>
+            {resetEmailSent && (
+              <span className="text-xs text-green-600">
+                ✓ Email gönderildi
+              </span>
+            )}
           </div>
 
           <button

@@ -3,6 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Custom Color Palette */
+  --color-dark-blue: #30343F;
+  --color-light-gray: #FAFAFF;
+  --color-light-purple: #E4D9FF;
+  --color-medium-blue: #273469;
+  --color-dark-navy: #1E2749;
+  
+  /* Semantic color assignments based on contrast */
+  --primary-bg: var(--color-light-gray);
+  --secondary-bg: var(--color-light-purple);
+  --accent-bg: var(--color-medium-blue);
+  --dark-bg: var(--color-dark-navy);
+  
+  --primary-text: var(--color-dark-navy);
+  --secondary-text: var(--color-dark-blue);
+  --light-text: var(--color-light-gray);
+  --accent-text: var(--color-medium-blue);
 }
 
 @theme inline {
@@ -14,8 +32,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-dark-navy);
+    --foreground: var(--color-light-gray);
+    
+    /* Dark mode color adjustments */
+    --primary-bg: var(--color-dark-navy);
+    --secondary-bg: var(--color-dark-blue);
+    --accent-bg: var(--color-light-purple);
+    --dark-bg: var(--color-dark-blue);
+    
+    --primary-text: var(--color-light-gray);
+    --secondary-text: var(--color-light-purple);
+    --light-text: var(--color-dark-navy);
+    --accent-text: var(--color-light-purple);
   }
 }
 
@@ -24,3 +53,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Utility classes for the custom color palette */
+.bg-primary { background-color: var(--primary-bg); }
+.bg-secondary { background-color: var(--secondary-bg); }
+.bg-accent { background-color: var(--accent-bg); }
+.bg-dark { background-color: var(--dark-bg); }
+
+.text-primary { color: var(--primary-text); }
+.text-secondary { color: var(--secondary-text); }
+.text-light { color: var(--light-text); }
+.text-accent { color: var(--accent-text); }
+
+.border-primary { border-color: var(--primary-text); }
+.border-secondary { border-color: var(--secondary-text); }
+.border-accent { border-color: var(--accent-text); }
+
+/* Hover states */
+.hover\:bg-accent:hover { background-color: var(--accent-bg); }
+.hover\:bg-dark:hover { background-color: var(--dark-bg); }
+.hover\:text-accent:hover { color: var(--accent-text); }
+.hover\:text-light:hover { color: var(--light-text); }
