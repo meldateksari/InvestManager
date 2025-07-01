@@ -45,10 +45,10 @@ const UserMenu = () => {
             Profilim
           </Link>
           <Link 
-            href="/account" 
+            href="/portfolio" 
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           >
-            Hesap Ayarları
+            Portföyüm
           </Link>
           <button
             onClick={handleLogout}

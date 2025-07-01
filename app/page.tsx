@@ -3,8 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import AuthButtons from "./components/auth/AuthButtons";
+import InvestmentSlider from "./components/slider/InvestmentSlider";
 
 export default function Home() {
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -45,6 +47,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Investment Products Slider */}
+      <InvestmentSlider />
 
       {/* Features Section */}
       <section className="py-16 bg-white">

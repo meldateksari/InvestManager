@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import SignUpModal from '../modals/SignUpModal';
 import LoginModal from '../modals/LoginModal';
 import { useAuth } from '@/app/context/AuthContext';
@@ -21,9 +22,19 @@ const AuthButtons = () => {
     return <div className="h-8" />;
   }
 
-  // Kullanıcı giriş yapmışsa UserMenu'yü göster
+  // Kullanıcı giriş yapmışsa Portföy butonu ve UserMenu'yü göster
   if (user) {
-    return <UserMenu />;
+    return (
+      <div className="flex items-center space-x-4">
+        <Link 
+          href="/portfolio"
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors font-medium"
+        >
+          Portföyüm
+        </Link>
+        <UserMenu />
+      </div>
+    );
   }
 
   // Kullanıcı giriş yapmamışsa login/signup butonlarını göster
