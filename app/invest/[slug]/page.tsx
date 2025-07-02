@@ -29,7 +29,7 @@ const InvestmentDetailPage = () => {
   const slug = params.slug as string;
 
   const products: Record<string, ProductData> = {
-    'altin': {
+    'gold': {
       name: "Altın",
       symbol: "XAU/TRY",
       price: "2.847,50 ₺",
@@ -73,7 +73,7 @@ const InvestmentDetailPage = () => {
       riskLevel: "Yüksek",
       category: "Kripto Para"
     },
-    'dolar': {
+    'dollar': {
       name: "Dolar",
       symbol: "USD/TRY",
       price: "34,25 ₺",
@@ -139,7 +139,7 @@ const InvestmentDetailPage = () => {
       riskLevel: "Yüksek",
       category: "Kripto Para"
     },
-    'gumus': {
+    'silver': {
       name: "Gümüş",
       symbol: "XAG/TRY",
       price: "32,45 ₺",

@@ -53,7 +53,7 @@ const InvestmentSlider = () => {
     },
     {
       id: 3,
-      name: "US Dollar",
+      name: "Dollar",
       symbol: "DXY",
       price: "106.25",
       change: "-0.12%",

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AuthButtons from "./components/auth/AuthButtons";
 import InvestmentSlider from "./components/slider/InvestmentSlider";
+import ChatBot from "./components/chatbot/ChatBot";
 
 export default function Home() {
 
@@ -339,6 +340,9 @@ export default function Home() {
           <p className="text-center text-gray-500 mt-8">©2024 InvestWise. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* ChatBot */}
+      <ChatBot />
     </main>
   );
 }
