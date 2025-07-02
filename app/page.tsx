@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "./context/AuthContext";
 import AuthButtons from "./components/auth/AuthButtons";
 import InvestmentSlider from "./components/slider/InvestmentSlider";
+import HorizontalScroll from "./components/scroll/HorizontalScroll";
 import ChatBot from "./components/chatbot/ChatBot";
 import SignUpModal from "./components/modals/SignUpModal";
 import LoginModal from "./components/modals/LoginModal";
@@ -271,6 +272,9 @@ export default function Home() {
 
       {/* Investment Products Slider with Currency Rates */}
       <InvestmentSlider />
+
+      {/* Horizontal Scroll Section */}
+      <HorizontalScroll />
 
       {/* Features Section */}
       <section className="py-16 bg-card">
