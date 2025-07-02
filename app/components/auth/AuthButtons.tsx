@@ -28,9 +28,9 @@ const AuthButtons = () => {
       <div className="flex items-center space-x-4">
         <Link 
           href="/portfolio"
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors font-medium"
+          className="bg-accent text-light px-4 py-2 rounded-md hover:bg-accent/90 transition-colors font-medium"
         >
-          Portföyüm
+          My Portfolio
         </Link>
         <UserMenu />
       </div>
@@ -42,15 +42,15 @@ const AuthButtons = () => {
     <div className="flex items-center space-x-4">
       <button
         onClick={() => setIsLoginOpen(true)}
-        className="text-gray-600 hover:text-gray-900"
+        className="text-main hover:text-heading"
       >
-        Giriş Yap
+        Login
       </button>
       <button
         onClick={() => setIsSignUpOpen(true)}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+        className="bg-accent text-light px-4 py-2 rounded-md hover:bg-accent/90"
       >
-        Kayıt Ol
+        Sign Up
       </button>
 
       {isSignUpOpen && (

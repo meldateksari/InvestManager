@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/app/context/AuthContext';
+import { useCurrency } from '@/app/hooks/useCurrency';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -86,14 +87,15 @@ interface CategoryData {
 }
 
 const CATEGORIES = [
-  { id: 'altin', name: 'Altın', icon: '🥇' },
-  { id: 'hisse', name: 'Hisse Senedi', icon: '📈' },
-  { id: 'fon', name: 'Fon', icon: '💼' },
-  { id: 'coin', name: 'Kripto Para', icon: '₿' }
+      { id: 'altin', name: 'Gold', icon: '🥇' },
+    { id: 'hisse', name: 'Stocks', icon: '📈' },
+    { id: 'fon', name: 'Funds', icon: '💼' },
+  { id: 'coin', name: 'Cryptocurrency', icon: '₿' }
 ];
 
 const PortfolioPage = () => {
   const { user, loading } = useAuth();
+  const { currencies, getCurrencyByCode } = useCurrency();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('portfolio');
   const [isBalanceVisible, setIsBalanceVisible] = useState(true);
@@ -178,12 +180,21 @@ const PortfolioPage = () => {
       return acc;
     }, {} as Record<string, Investment[]>);
 
-    // Mock current prices (gerçek uygulamada API'den gelecek)
-    const mockPrices = {
-      'BTC': 2874650,
-      'ETH': 125450,
-      'XAU': 2847.50,
-      'USD': 34.25
+    // Gerçek zamanlı fiyatları al
+    const getCurrentPrice = (symbol: string): number => {
+      // Kripto paralar için mock fiyatlar (API entegrasyonu gerekecek)
+      if (symbol === 'BTC') return 2874650;
+      if (symbol === 'ETH') return 125450;
+      if (symbol === 'XAU') return 2847.50; // Altın için
+      
+      // Döviz kurları için gerçek veriler
+      const currency = getCurrencyByCode(symbol);
+      if (currency) {
+        return currency.selling; // Satış fiyatını kullan
+      }
+      
+      // Fallback: %2 artış varsay
+      return 0;
     };
 
     const portfolioItems: PortfolioItem[] = Object.entries(groupedInvestments).map(([key, invs]) => {
@@ -192,8 +203,8 @@ const PortfolioPage = () => {
       const totalCost = invs.reduce((sum, inv) => sum + inv.totalCost, 0);
       const avgBuyPrice = totalCost / totalQuantity;
       
-      // Mock current price (gerçek uygulamada API'den gelecek)
-      const currentPrice = mockPrices[firstInv.symbol as keyof typeof mockPrices] || avgBuyPrice * 1.02;
+      // Gerçek zamanlı fiyat al
+      const currentPrice = getCurrentPrice(firstInv.symbol) || avgBuyPrice * 1.02;
       const totalValue = totalQuantity * currentPrice;
       const profitLoss = totalValue - totalCost;
       const profitLossPercent = (profitLoss / totalCost) * 100;
@@ -491,10 +502,10 @@ const PortfolioPage = () => {
                 InvestWise
               </Link>
               <span className="text-gray-300">→</span>
-              <h1 className="text-lg font-semibold text-gray-700">Portföyüm</h1>
+              <h1 className="text-lg font-semibold text-gray-700">My Portfolio</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-600">Hoş geldin, {user.firstName}!</span>
+              <span className="text-gray-600">Welcome, {user.firstName}!</span>
             </div>
           </div>
         </div>
@@ -513,7 +524,7 @@ const PortfolioPage = () => {
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                Portföy
+                Portfolio
               </button>
               <button
                 onClick={() => setActiveTab('investments')}
@@ -523,7 +534,7 @@ const PortfolioPage = () => {
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                Yatırımlarım
+                My Investments
               </button>
             </nav>
           </div>
@@ -545,13 +556,13 @@ const PortfolioPage = () => {
                 className="bg-white rounded-2xl shadow-lg p-8 mb-8"
               >
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-2xl font-bold text-gray-900">Portföy Özeti</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">Portfolio Summary</h2>
                   <button
                     onClick={() => setIsBalanceVisible(!isBalanceVisible)}
                     className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
                   >
                     {isBalanceVisible ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
-                    <span>{isBalanceVisible ? 'Gizle' : 'Göster'}</span>
+                    <span>{isBalanceVisible ? 'Hide' : 'Show'}</span>
                   </button>
                 </div>
 
@@ -572,16 +583,16 @@ const PortfolioPage = () => {
                       >
                         <div className="text-center">
                           <DollarSign className="w-6 h-6 text-blue-600 mx-auto mb-1" />
-                          <div className="text-xs text-gray-600">Toplam</div>
+                          <div className="text-xs text-gray-600">Total</div>
                         </div>
                       </CircularProgress>
                       <div>
-                        <div className="text-sm font-medium text-gray-600 mb-1">Toplam Portföy Değeri</div>
+                        <div className="text-sm font-medium text-gray-600 mb-1">Total Portfolio Value</div>
                         <div className="text-2xl font-bold text-gray-900">
                           {isBalanceVisible ? formatCurrency(totalBalance) : '••••••'}
                         </div>
                         <div className="text-sm text-gray-500">
-                          {portfolioData.length} farklı yatırım
+                          {portfolioData.length} different investments
                         </div>
                       </div>
                     </motion.div>
@@ -609,14 +620,14 @@ const PortfolioPage = () => {
                         </div>
                       </CircularProgress>
                       <div>
-                        <div className="text-sm font-medium text-gray-600 mb-1">Toplam Kar/Zarar</div>
+                        <div className="text-sm font-medium text-gray-600 mb-1">Total Profit/Loss</div>
                         <div className={`text-2xl font-bold ${totalProfitLoss >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                           {isBalanceVisible ? (
                             `${totalProfitLoss >= 0 ? '+' : ''}${formatCurrency(totalProfitLoss)}`
                           ) : '••••••'}
                         </div>
                         <div className={`text-sm ${totalProfitLoss >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                          {totalProfitLoss >= 0 ? 'Kazanç' : 'Zarar'} durumunda
+                          {totalProfitLoss >= 0 ? 'Profit' : 'Loss'} status
                         </div>
                       </div>
                     </motion.div>
@@ -637,8 +648,8 @@ const PortfolioPage = () => {
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="text-center">
                               <PieChart className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                              <div className="text-sm font-medium text-gray-600">Kategori</div>
-                              <div className="text-sm text-gray-500">Dağılımı</div>
+                              <div className="text-sm font-medium text-gray-600">Category</div>
+                              <div className="text-sm text-gray-500">Distribution</div>
                             </div>
                           </div>
                         </div>
@@ -677,7 +688,7 @@ const PortfolioPage = () => {
                       <div className="w-80 h-80 mx-auto flex items-center justify-center bg-gray-50 rounded-full">
                         <div className="text-center">
                           <PieChart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                          <div className="text-gray-500">Henüz veri yok</div>
+                          <div className="text-gray-500">No data yet</div>
                         </div>
                       </div>
                     )}
@@ -693,19 +704,19 @@ const PortfolioPage = () => {
                 className="bg-white rounded-2xl shadow-lg overflow-hidden"
               >
                 <div className="p-6 border-b border-gray-200">
-                  <h3 className="text-xl font-bold text-gray-900">Portföy Detayları</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Portfolio Details</h3>
                 </div>
 
                 {portfolioData.length === 0 ? (
                   <div className="p-8 text-center">
                     <PieChart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">Henüz yatırımınız yok</h3>
-                    <p className="text-gray-600 mb-4">Yatırımlarım sekmesinden ilk yatırımınızı ekleyin</p>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">You don't have any investments yet</h3>
+                    <p className="text-gray-600 mb-4">Add your first investment from the My Investments tab</p>
                     <button
                       onClick={() => setActiveTab('investments')}
                       className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                     >
-                      Yatırım Ekle
+                      Add Investment
                     </button>
                   </div>
                 ) : (
@@ -714,22 +725,22 @@ const PortfolioPage = () => {
                       <thead className="bg-gray-50">
                         <tr>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Varlık
+                            Asset
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Miktar
+                            Quantity
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Ort. Alış Fiyatı
+                            Avg. Purchase Price
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Güncel Fiyat
+                            Current Price
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Toplam Değer
+                            Total Value
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Kar/Zarar
+                            Profit/Loss
                           </th>
                         </tr>
                       </thead>
@@ -808,7 +819,7 @@ const PortfolioPage = () => {
                   className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors flex items-center space-x-2 shadow-lg"
                 >
                   <Plus className="w-5 h-5" />
-                  <span>Yeni Yatırım Ekle</span>
+                  <span>Add New Investment</span>
                 </button>
 
                 {/* Date Filter */}
@@ -819,7 +830,7 @@ const PortfolioPage = () => {
                     onChange={(e) => setSelectedDate(e.target.value)}
                     className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   >
-                    <option value="">Tüm Tarihler</option>
+                    <option value="">All Dates</option>
                     {availableDates.map((date) => (
                       <option key={date} value={date}>
                         {formatDate(date)}
@@ -846,7 +857,7 @@ const PortfolioPage = () => {
                 >
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-xl font-bold text-gray-900">
-                      {editingInvestment ? 'Yatırımı Düzenle' : 'Yeni Yatırım Ekle'}
+                      {editingInvestment ? 'Edit Investment' : 'Add New Investment'}
                     </h3>
                     <button
                       onClick={() => {
@@ -873,7 +884,7 @@ const PortfolioPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-gray-800 mb-2">
-                          Kategori
+                          Category
                         </label>
                         <select
                           value={formData.category}

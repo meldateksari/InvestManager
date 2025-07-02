@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'InvestManager',
-  description: 'Yatırım yönetim platformu',
+  description: 'Investment management platform',
 }
 
 export default function RootLayout({

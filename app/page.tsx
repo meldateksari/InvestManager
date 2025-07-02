@@ -2,25 +2,92 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useAuth } from "./context/AuthContext";
 import AuthButtons from "./components/auth/AuthButtons";
 import InvestmentSlider from "./components/slider/InvestmentSlider";
 import ChatBot from "./components/chatbot/ChatBot";
+import SignUpModal from "./components/modals/SignUpModal";
+import LoginModal from "./components/modals/LoginModal";
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("invest");
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const { user, loading } = useAuth();
+
+  const navItems = [
+    { id: "invest", label: "Invest", href: "#invest" },
+    { id: "currency", label: "Exchange Rates", href: "/currency" },
+    { id: "learn", label: "Learn", href: "#learn" },
+    { id: "community", label: "Community", href: "#community" },
+    { id: "support", label: "Support", href: "#support" }
+  ];
+
+  const toggleModals = () => {
+    setIsSignUpOpen(!isSignUpOpen);
+    setIsLoginOpen(!isLoginOpen);
+  };
+
+  const handleGetStarted = () => {
+    if (user) {
+      // If user is logged in, redirect to portfolio
+      window.location.href = '/portfolio';
+    } else {
+      // If user is not logged in, open signup modal
+      setIsSignUpOpen(true);
+    }
+  };
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-main">
       {/* Hero Section */}
-      <header className="bg-white">
+      <header className="bg-card shadow-modern">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <h1 className="text-xl font-bold">InvestWise</h1>
+            <h1 className="text-xl font-bold text-heading">InvestWise</h1>
           </div>
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="#invest" className="text-gray-600 hover:text-gray-900">Invest</Link>
-            <Link href="#learn" className="text-gray-600 hover:text-gray-900">Learn</Link>
-            <Link href="#community" className="text-gray-600 hover:text-gray-900">Community</Link>
-            <Link href="#support" className="text-gray-600 hover:text-gray-900">Support</Link>
+            {/* Tab Select Navigation */}
+            <div className="flex items-center space-x-1 bg-main rounded-lg p-1">
+              {navItems.map((item) => (
+                <div key={item.id} className="relative">
+                  {activeTab === item.id && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-card rounded-md shadow-modern"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30
+                      }}
+                    />
+                  )}
+                  <button
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      if (item.href.startsWith('#')) {
+                        document.querySelector(item.href)?.scrollIntoView({ 
+                          behavior: 'smooth' 
+                        });
+                      } else {
+                        window.location.href = item.href;
+                      }
+                    }}
+                    className={`relative z-10 px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                      activeTab === item.id
+                        ? "text-heading"
+                        : "text-main hover:text-heading"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                </div>
+              ))}
+            </div>
             <AuthButtons />
           </div>
         </nav>
@@ -40,88 +107,241 @@ export default function Home() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="text-white max-w-2xl">
-            <h2 className="text-5xl font-bold mb-4">Invest in your future with InvestWise</h2>
-            <p className="text-xl mb-8">Start building your wealth today with our easy-to-use platform. Invest confidently in stocks, ETFs, and more.</p>
-            <Link href="/get-started" className="bg-blue-500 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-600 inline-block">
-              Get Started
-            </Link>
+            <motion.h2 
+              className="text-5xl font-bold mb-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                ease: [0.6, -0.05, 0.01, 0.99] 
+              }}
+            >
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+              >
+                Invest in your 
+              </motion.span>
+              <motion.span
+                className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                  delay: 0.6, 
+                  duration: 0.6,
+                  type: "spring",
+                  stiffness: 200
+                }}
+              >
+                future
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.0, duration: 0.8 }}
+              >
+                {" "}with InvestWise
+              </motion.span>
+            </motion.h2>
+
+            <motion.p 
+              className="text-xl mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 1.2, 
+                duration: 0.8,
+                ease: "easeOut"
+              }}
+            >
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4, duration: 0.6 }}
+              >
+                Start building your wealth today with our 
+              </motion.span>
+              <motion.span
+                className="text-yellow-300 font-semibold"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ 
+                  delay: 1.8, 
+                  duration: 0.5,
+                  type: "spring",
+                  stiffness: 300
+                }}
+              >
+                easy-to-use platform
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2.2, duration: 0.6 }}
+              >
+                . Invest confidently in stocks, ETFs, and more.
+              </motion.span>
+            </motion.p>
+            
+            {/* Ticker Scroll */}
+            <div className="mb-8 overflow-hidden">
+              <motion.div
+                className="flex space-x-8 whitespace-nowrap"
+                animate={{
+                  x: [0, -1000]
+                }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 20,
+                    ease: "linear"
+                  }
+                }}
+              >
+                {[
+                  { text: "📈 AAPL +2.5%", color: "text-blue-200" },
+                  { text: "💰 BTC $45,320", color: "text-green-300" },
+                  { text: "🏦 USD/TRY 30.15", color: "text-yellow-300" },
+                  { text: "📊 S&P 500 +1.2%", color: "text-purple-300" },
+                  { text: "💎 Gold $2,045", color: "text-pink-300" },
+                  { text: "🚀 TSLA +3.8%", color: "text-indigo-300" },
+                  { text: "📱 GOOGL +1.7%", color: "text-orange-300" },
+                  { text: "⚡ EUR/USD 1.0845", color: "text-teal-300" }
+                ].concat([
+                  { text: "📈 AAPL +2.5%", color: "text-blue-200" },
+                  { text: "💰 BTC $45,320", color: "text-green-300" },
+                  { text: "🏦 USD/TRY 30.15", color: "text-yellow-300" },
+                  { text: "📊 S&P 500 +1.2%", color: "text-purple-300" },
+                  { text: "💎 Gold $2,045", color: "text-pink-300" },
+                  { text: "🚀 TSLA +3.8%", color: "text-indigo-300" },
+                  { text: "📱 GOOGL +1.7%", color: "text-orange-300" },
+                  { text: "⚡ EUR/USD 1.0845", color: "text-teal-300" }
+                ]).map((item, index) => (
+                  <span 
+                    key={`ticker-${index}`}
+                    className={`text-lg font-medium ${item.color}`}
+                  >
+                    {item.text}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ 
+                delay: 2.6, 
+                duration: 0.6,
+                type: "spring",
+                stiffness: 200
+              }}
+            >
+              <motion.div
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                                 <button 
+                   onClick={handleGetStarted}
+                   className="bg-accent text-light px-8 py-4 rounded-xl text-lg font-semibold hover:bg-accent/90 inline-flex items-center space-x-2 shadow-modern-lg transition-all duration-200"
+                 >
+                   <span>{user ? 'Go to Portfolio' : 'Get Started'}</span>
+                   <motion.span
+                     animate={{ x: [0, 5, 0] }}
+                     transition={{ 
+                       repeat: Infinity, 
+                       duration: 1.5,
+                       ease: "easeInOut"
+                     }}
+                   >
+                     →
+                   </motion.span>
+                 </button>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Investment Products Slider */}
+      {/* Investment Products Slider with Currency Rates */}
       <InvestmentSlider />
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-center">Why InvestWise?</h2>
-          <p className="text-center text-gray-600 mb-12">We provide the tools and resources you need to succeed in the market.</p>
+          <h2 className="text-3xl font-bold mb-12 text-center text-heading">Why InvestWise?</h2>
+          <p className="text-center text-muted mb-12">We provide the tools and resources you need to succeed in the market.</p>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg border border-gray-200">
+            <div className="p-6 rounded-lg border border-muted/20 bg-main shadow-modern">
               <div className="mb-4">
                 <Image src="/performance.svg" alt="Performance" width={40} height={40} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Performance Tracking</h3>
-              <p className="text-gray-600">Track your portfolio's performance in real-time with detailed analytics and insights.</p>
+              <h3 className="text-xl font-semibold mb-2 text-heading">Performance Tracking</h3>
+              <p className="text-main">Track your portfolio's performance in real-time with detailed analytics and insights.</p>
             </div>
 
-            <div className="p-6 rounded-lg border border-gray-200">
+            <div className="p-6 rounded-lg border border-muted/20 bg-main shadow-modern">
               <div className="mb-4">
                 <Image src="/security.svg" alt="Security" width={40} height={40} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Secure Investments</h3>
-              <p className="text-gray-600">Your investments are protected with top-tier security measures for your peace of mind.</p>
+              <h3 className="text-xl font-semibold mb-2 text-heading">Secure Investments</h3>
+              <p className="text-main">Your investments are protected with top-tier security measures for your peace of mind.</p>
             </div>
 
-            <div className="p-6 rounded-lg border border-gray-200">
+            <div className="p-6 rounded-lg border border-muted/20 bg-main shadow-modern">
               <div className="mb-4">
                 <Image src="/community.svg" alt="Community" width={40} height={40} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Community Support</h3>
-              <p className="text-gray-600">Join our vibrant investor community to share ideas, learn from experts, and stay informed.</p>
+              <h3 className="text-xl font-semibold mb-2 text-heading">Community Support</h3>
+              <p className="text-main">Join our vibrant investor community to share ideas, learn from experts, and stay informed.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Investment Section */}
-      <section id="invest" className="py-16 bg-gray-50">
+      <section id="invest" className="py-16 bg-main">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12">Investment Opportunities</h2>
-          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold mb-12 text-heading">Investment Opportunities</h2>
+          <p className="text-center text-muted mb-12 max-w-3xl mx-auto">
             Explore our wide range of portfolio options across various risk levels and sectors. 
             Achieve your financial goals with investment instruments analyzed by our expert team.
           </p>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg overflow-hidden shadow">
+            <div className="bg-card rounded-lg overflow-hidden shadow-modern">
               <div className="relative h-48">
                 <Image src="/real-estate.jpg" alt="Real Estate" fill className="object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Real Estate Fund</h3>
-                <p className="text-gray-600">Invest in high-yield real estate portfolio.</p>
+                <h3 className="text-xl font-semibold mb-2 text-heading">Real Estate Fund</h3>
+                <p className="text-main">Invest in high-yield real estate portfolio.</p>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg overflow-hidden shadow">
+            <div className="bg-card rounded-lg overflow-hidden shadow-modern">
               <div className="relative h-48">
                 <Image src="/tech.jpg" alt="Technology" fill className="object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Technology Growth Portfolio</h3>
-                <p className="text-gray-600">Benefit from the growth of leading technology companies with our carefully curated portfolio.</p>
+                <h3 className="text-xl font-semibold mb-2 text-heading">Technology Growth Portfolio</h3>
+                <p className="text-main">Benefit from the growth of leading technology companies with our carefully curated portfolio.</p>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg overflow-hidden shadow">
+            <div className="bg-card rounded-lg overflow-hidden shadow-modern">
               <div className="relative h-48">
                 <Image src="/sustainable.jpg" alt="Sustainable Living" fill className="object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Sustainable Living Investments</h3>
-                <p className="text-gray-600">Sustainable investment option supporting environmentally friendly ventures and companies.</p>
+                <h3 className="text-xl font-semibold mb-2 text-heading">Sustainable Living Investments</h3>
+                <p className="text-main">Sustainable investment option supporting environmentally friendly ventures and companies.</p>
               </div>
             </div>
           </div>
@@ -129,19 +349,19 @@ export default function Home() {
       </section>
 
       {/* Learn Section */}
-      <section id="learn" className="py-16 bg-white">
+      <section id="learn" className="py-16 bg-card">
                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <h2 className="text-3xl font-bold mb-12 text-center">Learn</h2>
-           <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+           <h2 className="text-3xl font-bold mb-12 text-center text-heading">Learn</h2>
+           <p className="text-center text-muted mb-12 max-w-3xl mx-auto">
              Acquire the knowledge and skills necessary to succeed in the investment world. Develop yourself 
              with comprehensive educational materials prepared by our expert instructors.
            </p>
           
           <div className="grid md:grid-cols-3 gap-8">
-                         <div className="bg-gray-50 p-6 rounded-lg">
-               <h3 className="text-xl font-semibold mb-4">Basic Investment Education</h3>
-               <p className="text-gray-600 mb-4">Take your first step into the investment world. Learn basic concepts, risk management, and portfolio creation.</p>
-               <ul className="text-sm text-gray-600 space-y-2">
+                         <div className="bg-main p-6 rounded-lg shadow-modern">
+               <h3 className="text-xl font-semibold mb-4 text-heading">Basic Investment Education</h3>
+               <p className="text-main mb-4">Take your first step into the investment world. Learn basic concepts, risk management, and portfolio creation.</p>
+               <ul className="text-sm text-main space-y-2">
                  <li>• Investment instruments introduction</li>
                  <li>• Risk assessment</li>
                  <li>• Portfolio diversification</li>
@@ -149,10 +369,10 @@ export default function Home() {
                </ul>
              </div>
 
-             <div className="bg-gray-50 p-6 rounded-lg">
-               <h3 className="text-xl font-semibold mb-4">Advanced Strategies</h3>
-               <p className="text-gray-600 mb-4">Advanced analysis techniques and strategy development for experienced investors.</p>
-               <ul className="text-sm text-gray-600 space-y-2">
+             <div className="bg-main p-6 rounded-lg shadow-modern">
+               <h3 className="text-xl font-semibold mb-4 text-heading">Advanced Strategies</h3>
+               <p className="text-main mb-4">Advanced analysis techniques and strategy development for experienced investors.</p>
+               <ul className="text-sm text-main space-y-2">
                  <li>• Technical analysis</li>
                  <li>• Fundamental analysis</li>
                  <li>• Derivative instruments</li>
@@ -160,10 +380,10 @@ export default function Home() {
                </ul>
              </div>
 
-             <div className="bg-gray-50 p-6 rounded-lg">
-               <h3 className="text-xl font-semibold mb-4">Market Updates</h3>
-               <p className="text-gray-600 mb-4">Current market analysis, economic indicators, and expert opinions.</p>
-               <ul className="text-sm text-gray-600 space-y-2">
+             <div className="bg-main p-6 rounded-lg shadow-modern">
+               <h3 className="text-xl font-semibold mb-4 text-heading">Market Updates</h3>
+               <p className="text-main mb-4">Current market analysis, economic indicators, and expert opinions.</p>
+               <ul className="text-sm text-main space-y-2">
                  <li>• Daily market analysis</li>
                  <li>• Weekly reports</li>
                  <li>• Expert webinars</li>
@@ -343,6 +563,22 @@ export default function Home() {
 
       {/* ChatBot */}
       <ChatBot />
+
+      {/* Auth Modals */}
+      {isSignUpOpen && (
+        <SignUpModal 
+          isOpen={isSignUpOpen} 
+          onClose={() => setIsSignUpOpen(false)}
+          onToggleModal={toggleModals}
+        />
+      )}
+      {isLoginOpen && (
+        <LoginModal 
+          isOpen={isLoginOpen} 
+          onClose={() => setIsLoginOpen(false)}
+          onToggleModal={toggleModals}
+        />
+      )}
     </main>
   );
 }

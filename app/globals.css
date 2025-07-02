@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F7FAFC;
+  --foreground: #2D3A47;
   
-  /* Custom Color Palette */
-  --color-dark-blue: #30343F;
-  --color-light-gray: #FAFAFF;
-  --color-light-purple: #E4D9FF;
-  --color-medium-blue: #273469; 
-  --color-dark-navy: #1E2749;
+  /* Modern ve Profesyonel Açık Mod Paleti */
+  --color-background-main: #F7FAFC;        /* Çok Açık Gri - Ana Arka Plan (%60) */
+  --color-cards-white: #FFFFFF;            /* Beyaz - Kartlar ve Menüler (%30) */
+  --color-text-main: #2D3A47;              /* Koyu Gri - Ana Metin */
+  --color-headings: #1A202C;               /* Siyah/Koyu Lacivert - Başlıklar */
+  --color-accent-blue: #3182CE;            /* Kurumsal Mavi - Vurgu Rengi */
+  --color-accent-green: #38A169;           /* Yeşil - Pozitif Değişim */
+  --color-accent-orange: #DD6B20;          /* Turuncu - Grafikler için */
+  --color-accent-gray: #718096;            /* Gri - Grafikler için */
   
-  /* Semantic color assignments based on contrast */
-  --primary-bg: var(--color-light-gray);
-  --secondary-bg: var(--color-light-purple);
-  --accent-bg: var(--color-medium-blue);
-  --dark-bg: var(--color-dark-navy);
+  /* Semantic color assignments */
+  --primary-bg: var(--color-background-main);
+  --secondary-bg: var(--color-cards-white);
+  --accent-bg: var(--color-accent-blue);
+  --success-bg: var(--color-accent-green);
+  --warning-bg: var(--color-accent-orange);
   
-  --primary-text: var(--color-dark-navy);
-  --secondary-text: var(--color-dark-blue);
-  --light-text: var(--color-light-gray);
-  --accent-text: var(--color-medium-blue);
+  --primary-text: var(--color-text-main);
+  --heading-text: var(--color-headings);
+  --light-text: var(--color-cards-white);
+  --accent-text: var(--color-accent-blue);
+  --success-text: var(--color-accent-green);
+  --warning-text: var(--color-accent-orange);
+  --muted-text: var(--color-accent-gray);
 }
 
 @theme inline {
@@ -54,23 +61,45 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Utility classes for the custom color palette */
-.bg-primary { background-color: var(--primary-bg); }
-.bg-secondary { background-color: var(--secondary-bg); }
+/* Modern Palet İçin Utility Classes */
+.bg-main { background-color: var(--primary-bg); }
+.bg-card { background-color: var(--secondary-bg); }
 .bg-accent { background-color: var(--accent-bg); }
-.bg-dark { background-color: var(--dark-bg); }
+.bg-success { background-color: var(--success-bg); }
+.bg-warning { background-color: var(--warning-bg); }
 
-.text-primary { color: var(--primary-text); }
-.text-secondary { color: var(--secondary-text); }
+.text-main { color: var(--primary-text); }
+.text-heading { color: var(--heading-text); }
 .text-light { color: var(--light-text); }
 .text-accent { color: var(--accent-text); }
+.text-success { color: var(--success-text); }
+.text-warning { color: var(--warning-text); }
+.text-muted { color: var(--muted-text); }
 
-.border-primary { border-color: var(--primary-text); }
-.border-secondary { border-color: var(--secondary-text); }
+.border-main { border-color: var(--primary-text); }
 .border-accent { border-color: var(--accent-text); }
+.border-muted { border-color: var(--muted-text); }
 
 /* Hover states */
 .hover\:bg-accent:hover { background-color: var(--accent-bg); }
-.hover\:bg-dark:hover { background-color: var(--dark-bg); }
+.hover\:bg-success:hover { background-color: var(--success-bg); }
 .hover\:text-accent:hover { color: var(--accent-text); }
 .hover\:text-light:hover { color: var(--light-text); }
+
+/* Modern gölgeler */
+.shadow-modern { 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-modern-lg { 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Soft gölgeler */
+.shadow-soft { 
+  box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.06), 0 1px 3px -1px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-soft-lg { 
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.04);
+}

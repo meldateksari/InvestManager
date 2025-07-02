@@ -74,22 +74,22 @@ const ProfilePage = () => {
     bio: '',
     country: '',
     city: '',
-    investmentExperience: 'Başlangıç',
-    riskTolerance: 'Orta',
-    investmentGoals: [],
-    preferredAssets: [],
-    avatar: '',
-    phone: '',
-    birthDate: '',
-    occupation: '',
-    totalInvestment: 0,
-    totalProfit: 0,
-    portfolioCount: 0,
-    joinDate: '',
-    lastLogin: '',
-    emailNotifications: true,
-    pushNotifications: true,
-    profileVisibility: 'Özel'
+      investmentExperience: 'Beginner',
+  riskTolerance: 'Medium',
+  investmentGoals: [],
+  preferredAssets: [],
+  avatar: '',
+  phone: '',
+  birthDate: '',
+  occupation: '',
+  totalInvestment: 0,
+  totalProfit: 0,
+  portfolioCount: 0,
+  joinDate: '',
+  lastLogin: '',
+  emailNotifications: true,
+  pushNotifications: true,
+  profileVisibility: 'Private'
   });
 
   useEffect(() => {
@@ -207,7 +207,7 @@ const ProfilePage = () => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         
-        // Aktif profil fotoğrafını subcollection'dan al
+        // Get active profile image from subcollection
         const profileImagesRef = collection(db, 'users', user.uid, 'profileImages');
         const activeImageQuery = query(profileImagesRef, where('isActive', '==', true));
         const activeImages = await getDocs(activeImageQuery);
@@ -223,11 +223,11 @@ const ProfilePage = () => {
           ...userData,
           avatar: avatarUrl,
           email: user.email || '',
-          joinDate: userData.createdAt?.toDate?.()?.toLocaleDateString?.('tr-TR') || 'Bilinmiyor',
-          lastLogin: userData.lastLogin?.toDate?.()?.toLocaleDateString?.('tr-TR') || 'Bilinmiyor'
+          joinDate: userData.createdAt?.toDate?.()?.toLocaleDateString?.('en-US') || 'Unknown',
+          lastLogin: userData.lastLogin?.toDate?.()?.toLocaleDateString?.('en-US') || 'Unknown'
         }));
       } else {
-        // Eğer kullanıcı belgesi yoksa, temel bilgilerle oluştur
+        // If user document doesn't exist, create with basic information
         const initialUserData = {
           firstName: '',
           lastName: '',
@@ -239,8 +239,8 @@ const ProfilePage = () => {
           phone: '',
           birthDate: '',
           occupation: '',
-          investmentExperience: 'Başlangıç',
-          riskTolerance: 'Orta',
+          investmentExperience: 'Beginner',
+          riskTolerance: 'Medium',
           investmentGoals: [],
           preferredAssets: [],
           totalInvestment: 0,
@@ -248,7 +248,7 @@ const ProfilePage = () => {
           portfolioCount: 0,
           emailNotifications: true,
           pushNotifications: true,
-          profileVisibility: 'Özel',
+          profileVisibility: 'Private',
           createdAt: new Date(),
           updatedAt: new Date()
         };
@@ -276,10 +276,10 @@ const ProfilePage = () => {
       });
 
       setIsEditing(false);
-      alert('Profil başarıyla güncellendi!');
+      alert('Profile updated successfully!');
     } catch (error) {
-      console.error('Profil güncellenirken hata:', error);
-      alert('Profil güncellenirken bir hata oluştu.');
+      console.error('Error updating profile:', error);
+      alert('An error occurred while updating profile.');
     } finally {
       setSaving(false);
     }
@@ -307,33 +307,33 @@ const ProfilePage = () => {
 
   // Base64 ile fotoğraf yükleme (CORS sorunu için alternatif)
   const handlePhotoUploadBase64 = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('=== BASE64 PROFIL FOTOĞRAFI YÜKLEME BAŞLADI ===');
+    console.log('=== BASE64 PROFILE PHOTO UPLOAD STARTED ===');
     
     const file = event.target.files?.[0];
     if (!file || !user) {
-      console.error('❌ Dosya veya kullanıcı bulunamadı:', { file: !!file, user: !!user });
-      alert('Dosya seçilemedi veya kullanıcı girişi yapılmamış.');
+      console.error('❌ File or user not found:', { file: !!file, user: !!user });
+      alert('File could not be selected or user is not logged in.');
       return;
     }
 
-    console.log('✅ Dosya seçildi:', {
+    console.log('✅ File selected:', {
       name: file.name,
       size: file.size,
       type: file.type,
       userId: user.uid
     });
 
-    // Dosya boyutu kontrolü (1MB Base64 için)
+    // File size check (1MB for Base64)
     if (file.size > 1 * 1024 * 1024) {
-      console.error('❌ Dosya çok büyük:', file.size);
-      alert('Base64 yöntemi için fotoğraf boyutu 1MB\'dan küçük olmalıdır.');
+      console.error('❌ File too large:', file.size);
+      alert('Photo size must be smaller than 1MB for Base64 method.');
       return;
     }
 
-    // Dosya tipi kontrolü
+    // File type check
     if (!file.type.startsWith('image/')) {
-      console.error('❌ Geçersiz dosya tipi:', file.type);
-      alert('Lütfen geçerli bir resim dosyası seçin.');
+      console.error('❌ Invalid file type:', file.type);
+      alert('Please select a valid image file.');
       return;
     }
 
@@ -687,7 +687,7 @@ const ProfilePage = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">Yükleniyor...</div>
+        <div className="text-lg">Loading...</div>
       </div>
     );
   }
@@ -697,42 +697,42 @@ const ProfilePage = () => {
   }
 
   const tabs = [
-    { id: 'kisisel', label: 'Kişisel Bilgiler', icon: '👤' },
-    { id: 'yatirim', label: 'Yatırım Profili', icon: '📈' },
-    { id: 'istatistik', label: 'İstatistikler', icon: '📊' },
-    { id: 'ayarlar', label: 'Hesap Ayarları', icon: '⚙️' }
+    { id: 'kisisel', label: 'Personal Information', icon: '👤' },
+    { id: 'yatirim', label: 'Investment Profile', icon: '📈' },
+    { id: 'istatistik', label: 'Statistics', icon: '📊' },
+    { id: 'ayarlar', label: 'Account Settings', icon: '⚙️' }
   ];
 
   const investmentGoalsOptions = [
-    'Emeklilik', 'Ev Almak', 'Araç Almak', 'Eğitim', 'Acil Durum Fonu', 
-    'Pasif Gelir', 'Servet Birikimi', 'Borç Ödeme'
+    'Retirement', 'Buy House', 'Buy Car', 'Education', 'Emergency Fund', 
+    'Passive Income', 'Wealth Building', 'Debt Payment'
   ];
 
   const preferredAssetsOptions = [
-    'Hisse Senedi', 'Tahvil', 'Altın', 'Döviz', 'Kripto Para', 
-    'Gayrimenkul', 'Yatırım Fonu', 'Bono'
+    'Stock', 'Bond', 'Gold', 'Currency', 'Cryptocurrency', 
+    'Real Estate', 'Mutual Fund', 'Government Bond'
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-main">
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white shadow-xl">
+      <div className="bg-accent text-light shadow-modern-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link 
                 href="/" 
-                className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-all duration-300 group"
+                className="flex items-center space-x-2 text-light hover:text-yellow-300 transition-all duration-300 group"
               >
                 <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
-                <span className="font-medium">Ana Sayfaya Dön</span>
+                <span className="font-medium">Back to Home</span>
               </Link>
             </div>
             <div className="text-center">
-              <h1 className="text-3xl font-bold mb-1">Kullanıcı Profili</h1>
-              <p className="text-blue-100 text-sm">Yatırım bilgilerinizi yönetin</p>
+              <h1 className="text-3xl font-bold mb-1 text-light">User Profile</h1>
+              <p className="text-light/80 text-sm">Manage your investment information</p>
             </div>
             <div className="w-32"></div> {/* Spacer for centering */}
           </div>
@@ -754,13 +754,13 @@ const ProfilePage = () => {
                        </div>
                      )}
                      {profile.avatar ? (
-                       <img src={profile.avatar} alt="Profil" className="w-28 h-28 rounded-full object-cover" />
+                       <img src={profile.avatar} alt="Profile" className="w-28 h-28 rounded-full object-cover" />
                      ) : (
-                       (profile.firstName?.[0] || 'K').toUpperCase()
+                       (profile.firstName?.[0] || 'U').toUpperCase()
                      )}
                    </div>
                    
-                   {/* Fotoğraf Düzenleme Butonları */}
+                   {/* Photo Edit Buttons */}
                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
                      {/* Storage ile yükleme */}
                      <input
@@ -774,7 +774,7 @@ const ProfilePage = () => {
                      <label
                        htmlFor="photo-upload-storage"
                        className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 shadow-lg transition-colors cursor-pointer"
-                       title="Storage ile Yükle (5MB)"
+                       title="Upload with Storage (5MB)"
                      >
                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -793,7 +793,7 @@ const ProfilePage = () => {
                      <label
                        htmlFor="photo-upload-base64"
                        className="bg-green-500 hover:bg-green-600 text-white rounded-full p-2 shadow-lg transition-colors cursor-pointer"
-                       title="Base64 ile Yükle (1MB)"
+                       title="Upload with Base64 (1MB)"
                      >
                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -805,7 +805,7 @@ const ProfilePage = () => {
                          onClick={handlePhotoRemove}
                          disabled={uploadingPhoto}
                          className="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 shadow-lg transition-colors"
-                         title="Fotoğrafı Kaldır"
+                         title="Remove Photo"
                        >
                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -815,15 +815,15 @@ const ProfilePage = () => {
                    </div>
                  </div>
                 <h3 className="mt-4 text-xl font-bold">
-                  {profile.firstName || 'Ad'} {profile.lastName || 'Soyad'}
+                  {profile.firstName || 'First Name'} {profile.lastName || 'Last Name'}
                 </h3>
                 <p className="text-blue-100 text-sm mt-1">
-                  {profile.occupation || 'Meslek Belirtilmemiş'}
+                  {profile.occupation || 'Occupation Not Specified'}
                 </p>
                 <div className="mt-3 space-y-2">
                   <div className="bg-white/10 rounded-lg px-3 py-2">
                     <p className="text-blue-100 text-xs">
-                      Üyelik: {profile.joinDate || 'Bilinmiyor'}
+                      Membership: {profile.joinDate || 'Unknown'}
                     </p>
                   </div>
                 
@@ -861,10 +861,10 @@ const ProfilePage = () => {
                       {tabs.find(tab => tab.id === activeTab)?.label}
                     </h2>
                     <p className="text-gray-700 text-sm">
-                      {activeTab === 'kisisel' && 'Temel bilgilerinizi güncelleyin'}
-                      {activeTab === 'yatirim' && 'Yatırım tercihlerinizi belirleyin'}
-                      {activeTab === 'istatistik' && 'Yatırım performansınızı görüntüleyin'}
-                      {activeTab === 'ayarlar' && 'Hesap ayarlarınızı yönetin'}
+                      {activeTab === 'kisisel' && 'Update your basic information'}
+                      {activeTab === 'yatirim' && 'Set your investment preferences'}
+                      {activeTab === 'istatistik' && 'View your investment performance'}
+                      {activeTab === 'ayarlar' && 'Manage your account settings'}
                     </p>
                   </div>
                   {activeTab !== 'istatistik' && (
@@ -874,7 +874,7 @@ const ProfilePage = () => {
                           onClick={() => setIsEditing(false)}
                           className="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
                         >
-                          İptal
+                          Cancel
                         </button>
                       )}
                       <button
@@ -889,21 +889,21 @@ const ProfilePage = () => {
                         {saving ? (
                           <div className="flex items-center space-x-2">
                             <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                            <span>Kaydediliyor...</span>
+                            <span>Saving...</span>
                           </div>
                         ) : isEditing ? (
                           <div className="flex items-center space-x-2">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>Kaydet</span>
+                            <span>Save</span>
                           </div>
                         ) : (
                           <div className="flex items-center space-x-2">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                             </svg>
-                            <span>Düzenle</span>
+                            <span>Edit</span>
                           </div>
                         )}
                       </button>
@@ -923,7 +923,7 @@ const ProfilePage = () => {
                             <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            <span>Ad</span>
+                            <span>First Name</span>
                           </span>
                         </label>
                         <input
@@ -931,7 +931,7 @@ const ProfilePage = () => {
                           value={profile.firstName}
                           onChange={(e) => handleInputChange('firstName', e.target.value)}
                           disabled={!isEditing}
-                          placeholder="Adınızı girin"
+                          placeholder="Enter your first name"
                           className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-300 text-gray-800 font-medium ${
                             isEditing 
                               ? 'border-indigo-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 bg-white' 
@@ -945,7 +945,7 @@ const ProfilePage = () => {
                             <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            <span>Soyad</span>
+                            <span>Last Name</span>
                           </span>
                         </label>
                         <input
@@ -953,7 +953,7 @@ const ProfilePage = () => {
                           value={profile.lastName}
                           onChange={(e) => handleInputChange('lastName', e.target.value)}
                           disabled={!isEditing}
-                          placeholder="Soyadınızı girin"
+                          placeholder="Enter your last name"
                           className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-300 text-gray-800 font-medium ${
                             isEditing 
                               ? 'border-indigo-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 bg-white' 
@@ -969,7 +969,7 @@ const ProfilePage = () => {
                           <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a1 1 0 001.42 0L21 7M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                           </svg>
-                          <span>E-posta</span>
+                          <span>Email</span>
                         </span>
                       </label>
                       <input
@@ -982,7 +982,7 @@ const ProfilePage = () => {
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
-                        <span>E-posta adresi güvenlik nedeniyle değiştirilemez</span>
+                        <span>Email address cannot be changed for security reasons</span>
                       </p>
                     </div>
 
@@ -992,7 +992,7 @@ const ProfilePage = () => {
                           <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                           </svg>
-                          <span>Hakkımda</span>
+                          <span>About Me</span>
                         </span>
                       </label>
                       <textarea
@@ -1005,14 +1005,14 @@ const ProfilePage = () => {
                             ? 'border-indigo-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 bg-white' 
                             : 'border-gray-200 bg-gray-50 text-gray-700'
                         }`}
-                        placeholder="Kendiniz hakkında, yatırım deneyimleriniz ve hedefleriniz hakkında kısa bir bilgi yazın..."
+                        placeholder="Write a brief description about yourself, your investment experience and goals..."
                       />
                     </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-secondary mb-2">
-                        Telefon
+                        Phone
                       </label>
                       <input
                         type="tel"
@@ -1024,7 +1024,7 @@ const ProfilePage = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-secondary mb-2">
-                        Doğum Tarihi
+                        Birth Date
                       </label>
                       <input
                         type="date"
@@ -1039,7 +1039,7 @@ const ProfilePage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-secondary mb-2">
-                        Ülke
+                        Country
                       </label>
                       <input
                         type="text"
@@ -1051,7 +1051,7 @@ const ProfilePage = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-secondary mb-2">
-                        Şehir
+                        City
                       </label>
                       <input
                         type="text"
@@ -1065,7 +1065,7 @@ const ProfilePage = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-secondary mb-2">
-                      Meslek
+                      Occupation
                     </label>
                     <input
                       type="text"
@@ -1083,7 +1083,7 @@ const ProfilePage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-secondary mb-2">
-                        Yatırım Deneyimi
+                        Investment Experience
                       </label>
                       <select
                         value={profile.investmentExperience}
@@ -1091,15 +1091,15 @@ const ProfilePage = () => {
                         disabled={!isEditing}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50 text-gray-800"
                       >
-                        <option value="Başlangıç">Başlangıç (0-1 yıl)</option>
-                        <option value="Orta">Orta (1-3 yıl)</option>
-                        <option value="İleri">İleri (3-5 yıl)</option>
-                        <option value="Uzman">Uzman (5+ yıl)</option>
+                        <option value="Beginner">Beginner (0-1 year)</option>
+                        <option value="Intermediate">Intermediate (1-3 years)</option>
+                        <option value="Advanced">Advanced (3-5 years)</option>
+                        <option value="Expert">Expert (5+ years)</option>
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-secondary mb-2">
-                        Risk Toleransı
+                        Risk Tolerance
                       </label>
                       <select
                         value={profile.riskTolerance}
@@ -1107,17 +1107,17 @@ const ProfilePage = () => {
                         disabled={!isEditing}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50 text-gray-800"
                       >
-                        <option value="Düşük">Düşük Risk</option>
-                        <option value="Orta">Orta Risk</option>
-                        <option value="Yüksek">Yüksek Risk</option>
-                        <option value="Çok Yüksek">Çok Yüksek Risk</option>
+                        <option value="Low">Low Risk</option>
+                        <option value="Medium">Medium Risk</option>
+                        <option value="High">High Risk</option>
+                        <option value="Very High">Very High Risk</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-secondary mb-3">
-                      Yatırım Hedefleri
+                      Investment Goals
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                       {investmentGoalsOptions.map((goal) => (
@@ -1137,7 +1137,7 @@ const ProfilePage = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-secondary mb-3">
-                      Tercih Edilen Varlık Türleri
+                      Preferred Asset Types
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                       {preferredAssetsOptions.map((asset) => (
@@ -1168,12 +1168,12 @@ const ProfilePage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-blue-900">Gerçek Zamanlı İstatistikler</h3>
-                        <p className="text-blue-700 text-sm">Portföy verilerinizden hesaplanan güncel bilgiler</p>
+                        <h3 className="text-lg font-bold text-blue-900">Real-Time Statistics</h3>
+                        <p className="text-blue-700 text-sm">Current information calculated from your portfolio data</p>
                       </div>
                     </div>
                     <div className="text-xs text-blue-600 bg-blue-100 rounded-lg px-3 py-2">
-                      📊 {investments.length} adet yatırım işleminiz bulunuyor
+                      📊 You have {investments.length} investment transactions
                     </div>
                   </div>
 
@@ -1184,11 +1184,11 @@ const ProfilePage = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                         </svg>
                         <div className="text-3xl font-bold mb-2">
-                          ₺{calculatedStats.totalInvestment.toLocaleString('tr-TR')}
+                          ₺{calculatedStats.totalInvestment.toLocaleString('en-US')}
                         </div>
-                        <div className="text-blue-100 text-sm font-medium">Toplam Yatırım</div>
+                        <div className="text-blue-100 text-sm font-medium">Total Investment</div>
                         <div className="text-blue-200 text-xs mt-1">
-                          Yaptığınız toplam yatırım tutarı
+                          Total amount of investments you made
                         </div>
                       </div>
                     </div>
@@ -1206,14 +1206,14 @@ const ProfilePage = () => {
                           )}
                         </svg>
                         <div className="text-3xl font-bold mb-2">
-                          {calculatedStats.totalProfit >= 0 ? '+' : ''}₺{calculatedStats.totalProfit.toLocaleString('tr-TR')}
+                          {calculatedStats.totalProfit >= 0 ? '+' : ''}₺{calculatedStats.totalProfit.toLocaleString('en-US')}
                         </div>
                         <div className="opacity-90 text-sm font-medium">
-                          {calculatedStats.totalProfit >= 0 ? 'Toplam Kar' : 'Toplam Zarar'}
+                          {calculatedStats.totalProfit >= 0 ? 'Total Profit' : 'Total Loss'}
                         </div>
                         <div className="opacity-80 text-xs mt-1">
                           {calculatedStats.totalInvestment > 0 && (
-                            `%${((calculatedStats.totalProfit / calculatedStats.totalInvestment) * 100).toFixed(2)} getiri`
+                            `${((calculatedStats.totalProfit / calculatedStats.totalInvestment) * 100).toFixed(2)}% return`
                           )}
                         </div>
                       </div>
@@ -1226,9 +1226,9 @@ const ProfilePage = () => {
                         <div className="text-3xl font-bold mb-2">
                           {calculatedStats.portfolioCount}
                         </div>
-                        <div className="text-purple-100 text-sm font-medium">Farklı Varlık</div>
+                        <div className="text-purple-100 text-sm font-medium">Different Assets</div>
                         <div className="text-purple-200 text-xs mt-1">
-                          Portföyünüzdeki yatırım çeşitliliği
+                          Investment diversity in your portfolio
                         </div>
                       </div>
                     </div>
@@ -1243,40 +1243,40 @@ const ProfilePage = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                           </svg>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-800">Yatırım Özeti</h3>
+                        <h3 className="text-xl font-bold text-gray-800">Investment Summary</h3>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div className="bg-blue-50 rounded-xl p-4">
-                          <div className="text-sm font-medium text-blue-800">Toplam İşlem</div>
+                          <div className="text-sm font-medium text-blue-800">Total Transactions</div>
                           <div className="text-2xl font-bold text-blue-900">{investments.length}</div>
-                          <div className="text-xs text-blue-600">Yatırım işlemi</div>
+                          <div className="text-xs text-blue-600">Investment transactions</div>
                         </div>
                         <div className="bg-green-50 rounded-xl p-4">
-                          <div className="text-sm font-medium text-green-800">Mevcut Değer</div>
+                          <div className="text-sm font-medium text-green-800">Current Value</div>
                           <div className="text-2xl font-bold text-green-900">
-                            ₺{(calculatedStats.totalInvestment + calculatedStats.totalProfit).toLocaleString('tr-TR')}
+                            ₺{(calculatedStats.totalInvestment + calculatedStats.totalProfit).toLocaleString('en-US')}
                           </div>
-                          <div className="text-xs text-green-600">Güncel portföy değeri</div>
+                          <div className="text-xs text-green-600">Current portfolio value</div>
                         </div>
                         <div className="bg-purple-50 rounded-xl p-4">
-                          <div className="text-sm font-medium text-purple-800">İlk Yatırım</div>
+                          <div className="text-sm font-medium text-purple-800">First Investment</div>
                           <div className="text-2xl font-bold text-purple-900">
                             {investments.length > 0 
-                              ? new Date(Math.min(...investments.map(inv => new Date(inv.purchaseDate).getTime()))).toLocaleDateString('tr-TR')
+                              ? new Date(Math.min(...investments.map(inv => new Date(inv.purchaseDate).getTime()))).toLocaleDateString('en-US')
                               : '-'
                             }
                           </div>
-                          <div className="text-xs text-purple-600">En erken alış tarihi</div>
+                          <div className="text-xs text-purple-600">Earliest purchase date</div>
                         </div>
                         <div className="bg-orange-50 rounded-xl p-4">
-                          <div className="text-sm font-medium text-orange-800">Son Yatırım</div>
+                          <div className="text-sm font-medium text-orange-800">Last Investment</div>
                           <div className="text-2xl font-bold text-orange-900">
                             {investments.length > 0 
-                              ? new Date(Math.max(...investments.map(inv => new Date(inv.purchaseDate).getTime()))).toLocaleDateString('tr-TR')
+                              ? new Date(Math.max(...investments.map(inv => new Date(inv.purchaseDate).getTime()))).toLocaleDateString('en-US')
                               : '-'
                             }
                           </div>
-                          <div className="text-xs text-orange-600">En son alış tarihi</div>
+                          <div className="text-xs text-orange-600">Latest purchase date</div>
                         </div>
                       </div>
                     </div>
@@ -1290,9 +1290,9 @@ const ProfilePage = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <h3 className="text-xl font-bold text-yellow-800 mb-2">Henüz Yatırımınız Bulunmuyor</h3>
+                      <h3 className="text-xl font-bold text-yellow-800 mb-2">No Investments Yet</h3>
                       <p className="text-yellow-700 mb-4">
-                        İstatistiklerinizi görebilmek için önce portföy sayfasından yatırım eklemeniz gerekiyor.
+                        To view your statistics, you need to add investments from the portfolio page first.
                       </p>
                       <Link 
                         href="/portfolio"
@@ -1301,7 +1301,7 @@ const ProfilePage = () => {
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
-                        <span>Portföy Sayfasına Git</span>
+                        <span>Go to Portfolio Page</span>
                       </Link>
                     </div>
                   )}
@@ -1311,10 +1311,10 @@ const ProfilePage = () => {
               {activeTab === 'ayarlar' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-primary mb-4">Bildirim Ayarları</h3>
+                    <h3 className="text-lg font-semibold text-primary mb-4">Notification Settings</h3>
                     <div className="space-y-4">
                       <label className="flex items-center justify-between">
-                        <span className="text-secondary">E-posta Bildirimleri</span>
+                        <span className="text-secondary">Email Notifications</span>
                         <input
                           type="checkbox"
                           checked={profile.emailNotifications}
@@ -1324,7 +1324,7 @@ const ProfilePage = () => {
                         />
                       </label>
                       <label className="flex items-center justify-between">
-                        <span className="text-secondary">Anlık Bildirimler</span>
+                        <span className="text-secondary">Push Notifications</span>
                         <input
                           type="checkbox"
                           checked={profile.pushNotifications}
@@ -1337,10 +1337,10 @@ const ProfilePage = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-primary mb-4">Gizlilik Ayarları</h3>
+                    <h3 className="text-lg font-semibold text-primary mb-4">Privacy Settings</h3>
                     <div>
                       <label className="block text-sm font-medium text-secondary mb-2">
-                        Profil Görünürlüğü
+                        Profile Visibility
                       </label>
                       <select
                         value={profile.profileVisibility}
@@ -1348,29 +1348,29 @@ const ProfilePage = () => {
                         disabled={!isEditing}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50"
                       >
-                        <option value="Herkese Açık">Herkese Açık</option>
-                        <option value="Sadece Takipçiler">Sadece Takipçiler</option>
-                        <option value="Özel">Özel</option>
+                        <option value="Public">Public</option>
+                        <option value="Followers Only">Followers Only</option>
+                        <option value="Private">Private</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="pt-6 border-t border-gray-200">
-                    <h3 className="text-lg font-semibold text-red-600 mb-4">Tehlikeli Bölge</h3>
+                    <h3 className="text-lg font-semibold text-red-600 mb-4">Danger Zone</h3>
                     <div className="space-y-4">
                       <button
                         onClick={() => setShowPasswordModal(true)}
                         className="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1721 9z" />
                         </svg>
-                        <span>Şifre Değiştir</span>
+                        <span>Change Password</span>
                       </button>
                       <button
                         onClick={() => {
-                          if (confirm('Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!')) {
-                            alert('Hesap silme özelliği yakında eklenecek.');
+                          if (confirm('Are you sure you want to delete your account? This action cannot be undone!')) {
+                            alert('Account deletion feature will be added soon.');
                           }
                         }}
                         className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2"
@@ -1378,7 +1378,7 @@ const ProfilePage = () => {
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <span>Hesabı Sil</span>
+                        <span>Delete Account</span>
                       </button>
                     </div>
                   </div>
@@ -1395,7 +1395,7 @@ const ProfilePage = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-gray-800">Şifre Değiştir</h3>
+              <h3 className="text-xl font-bold text-gray-800">Change Password</h3>
               <button
                 onClick={() => {
                   setShowPasswordModal(false);
@@ -1412,40 +1412,40 @@ const ProfilePage = () => {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-2">
-                  Mevcut Şifre
+                  Current Password
                 </label>
                 <input
                   type="password"
                   value={passwordData.currentPassword}
                   onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-300 text-gray-800 font-medium"
-                  placeholder="Mevcut şifrenizi girin"
+                  placeholder="Enter your current password"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-2">
-                  Yeni Şifre
+                  New Password
                 </label>
                 <input
                   type="password"
                   value={passwordData.newPassword}
                   onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-300 text-gray-800 font-medium"
-                  placeholder="Yeni şifrenizi girin"
+                  placeholder="Enter your new password"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-2">
-                  Yeni Şifre (Tekrar)
+                  Confirm New Password
                 </label>
                 <input
                   type="password"
                   value={passwordData.confirmPassword}
                   onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-300 text-gray-800 font-medium"
-                  placeholder="Yeni şifrenizi tekrar girin"
+                  placeholder="Confirm your new password"
                 />
               </div>
 
@@ -1455,11 +1455,11 @@ const ProfilePage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                   </svg>
                   <div>
-                    <p className="text-sm font-medium text-yellow-800">Güvenlik İpuçları:</p>
+                    <p className="text-sm font-medium text-yellow-800">Security Tips:</p>
                     <ul className="text-xs text-yellow-800 mt-1 space-y-1">
-                      <li>• Şifreniz en az 6 karakter olmalıdır</li>
-                      <li>• Büyük-küçük harf, sayı ve özel karakter kullanın</li>
-                      <li>• Kolay tahmin edilebilir bilgiler kullanmayın</li>
+                      <li>• Password must be at least 6 characters</li>
+                      <li>• Use uppercase, lowercase, numbers and special characters</li>
+                      <li>• Don't use easily guessable information</li>
                     </ul>
                   </div>
                 </div>
@@ -1474,13 +1474,13 @@ const ProfilePage = () => {
                 }}
                 className="flex-1 px-4 py-3 text-gray-700 hover:text-gray-900 font-medium transition-colors rounded-xl border border-gray-200 hover:bg-gray-50"
               >
-                İptal
+                Cancel
               </button>
               <button
                 onClick={handlePasswordChange}
                 className="flex-1 px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                Şifreyi Güncelle
+                Update Password
               </button>
             </div>
           </div>
