@@ -26,4 +26,5 @@ export interface CurrencyListProps {
   loading?: boolean;
   error?: string;
   onRefresh?: () => void;
+  onCurrencySelect?: (currencyCode: string) => void;
 } 

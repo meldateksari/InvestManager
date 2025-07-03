@@ -10,7 +10,8 @@ const CurrencyList: React.FC<CurrencyListProps> = ({
   currencies, 
   loading = false, 
   error = null, 
-  onRefresh 
+  onRefresh,
+  onCurrencySelect 
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<'name' | 'rate' | 'change'>('name');
@@ -69,6 +70,8 @@ const CurrencyList: React.FC<CurrencyListProps> = ({
 
   const handleCurrencyClick = (currency: CurrencyRate) => {
     setSelectedCurrency(currency);
+    // Eğer onCurrencySelect prop'u varsa, döviz kodunu gönder
+    onCurrencySelect?.(currency.code);
   };
 
   if (loading) {

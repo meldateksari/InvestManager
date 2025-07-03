@@ -3,12 +3,16 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, TrendingUp, Globe, Clock } from 'lucide-react';
+import { ArrowLeft, TrendingUp, Globe, Clock, BarChart3 } from 'lucide-react';
 import { useCurrency } from '../../hooks/useCurrency';
 import CurrencyList from '../../components/currency/CurrencyList';
+import TradingViewChart from '../../components/tradingView/TradingViewChart';
+import { currencyToTradingViewSymbol, formatSymbolName } from '../../utils/currencyUtils';
 
 const CurrencyPage = () => {
-  const { currencies, loading, error, lastUpdated, refresh } = useCurrency();
+  const { currencies, loading, refresh } = useCurrency();
+  const [selectedCurrency, setSelectedCurrency] = React.useState<string>('USD');
+  const [showChart, setShowChart] = React.useState(true); // Varsayılan olarak açık
 
   // En çok yükselen ve düşenleri hesapla
   const topGainers = React.useMemo(() => {
@@ -30,6 +34,31 @@ const CurrencyPage = () => {
     const sum = currencies.reduce((acc, curr) => acc + curr.changePercent, 0);
     return sum / currencies.length;
   }, [currencies]);
+
+  // Seçilen dövizin bilgilerini al
+  const selectedCurrencyData = React.useMemo(() => {
+    return currencies.find(c => c.code === selectedCurrency);
+  }, [currencies, selectedCurrency]);
+
+  // Döviz seçim handler'ı
+  const handleCurrencySelect = (currencyCode: string) => {
+    setSelectedCurrency(currencyCode);
+    // Grafik zaten açık, sadece sembolü değiştir
+    if (!showChart) {
+      setShowChart(true);
+    }
+    
+    // Grafik alanına yumuşak scroll
+    setTimeout(() => {
+      const chartElement = document.getElementById('currency-chart');
+      if (chartElement) {
+        chartElement.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    }, 100);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
@@ -72,18 +101,88 @@ const CurrencyPage = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Anlık Döviz Kurları
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
             Türk Lirası karşısında tüm major dövizlerin güncel kurlarını takip edin. 
             Veriler gerçek zamanlı olarak güncellenmektedir.
           </p>
+          
+          {/* Quick Chart Buttons */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {['USD', 'EUR', 'GBP', 'JPY'].map((code) => (
+              <motion.button
+                key={code}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => handleCurrencySelect(code)}
+                className="flex items-center space-x-2 bg-white text-gray-700 px-4 py-2 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 shadow-sm"
+              >
+                <BarChart3 className="w-4 h-4" />
+                <span className="font-medium">{code} Grafiği</span>
+              </motion.button>
+            ))}
+          </div>
         </motion.div>
+
+        {/* Live Chart Section */}
+        {showChart && selectedCurrencyData && (
+          <motion.div
+            id="currency-chart"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-3">
+                <BarChart3 className="w-6 h-6 text-blue-600" />
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {formatSymbolName(selectedCurrency, selectedCurrencyData.name)} Grafiği
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Anlık fiyat hareketleri ve teknik analiz
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-gray-900">
+                    ₺{selectedCurrencyData.rate.toFixed(4)}
+                  </div>
+                  <div className={`text-sm font-medium ${
+                    selectedCurrencyData.changePercent >= 0 ? 'text-green-600' : 'text-red-600'
+                  }`}>
+                    {selectedCurrencyData.changePercent >= 0 ? '+' : ''}{selectedCurrencyData.changePercent.toFixed(2)}%
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowChart(false)}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+            
+            <div className="rounded-lg overflow-hidden">
+              <TradingViewChart
+                symbol={currencyToTradingViewSymbol(selectedCurrency)}
+                height={500}
+                theme="light"
+                interval="15"
+                locale="tr"
+              />
+            </div>
+          </motion.div>
+        )}
 
         {/* Quick Stats */}
         {!loading && currencies.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
           >
             {/* Ortalama Değişim */}
@@ -109,7 +208,7 @@ const CurrencyPage = () => {
               {topGainers.length > 0 ? (
                 <div className="space-y-2">
                   {topGainers.map((currency, index) => (
-                    <div key={currency.code} className="flex items-center justify-between">
+                    <div key={currency.code} className="flex items-center justify-between cursor-pointer hover:bg-green-50 p-1 rounded" onClick={() => handleCurrencySelect(currency.code)}>
                       <span className="text-sm font-medium text-gray-700">
                         {index + 1}. {currency.code}
                       </span>
@@ -133,7 +232,7 @@ const CurrencyPage = () => {
               {topLosers.length > 0 ? (
                 <div className="space-y-2">
                   {topLosers.map((currency, index) => (
-                    <div key={currency.code} className="flex items-center justify-between">
+                    <div key={currency.code} className="flex items-center justify-between cursor-pointer hover:bg-red-50 p-1 rounded" onClick={() => handleCurrencySelect(currency.code)}>
                       <span className="text-sm font-medium text-gray-700">
                         {index + 1}. {currency.code}
                       </span>
@@ -160,8 +259,8 @@ const CurrencyPage = () => {
           <CurrencyList
             currencies={currencies}
             loading={loading}
-          
             onRefresh={refresh}
+            onCurrencySelect={handleCurrencySelect}
           />
         </motion.div>
 
