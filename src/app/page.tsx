@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 import AuthButtons from "../components/auth/AuthButtons";
 import InvestmentSlider from "../components/slider/InvestmentSlider";
-import HorizontalScroll from "../components/scroll/HorizontalScroll";
+
 import ChatBot from "../components/chatbot/ChatBot";
 import SignUpModal from "../components/modals/SignUpModal";
 import LoginModal from "../components/modals/LoginModal";
@@ -273,295 +273,292 @@ export default function Home() {
       {/* Investment Products Slider with Currency Rates */}
       <InvestmentSlider />
 
-      {/* Horizontal Scroll Section */}
-      <HorizontalScroll />
-
-      {/* Features Section */}
-      <section className="py-16 bg-card">
+      {/* Features Section - Açık Gri */}
+      <section className="py-16 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-center text-heading">Why InvestWise?</h2>
-          <p className="text-center text-muted mb-12">We provide the tools and resources you need to succeed in the market.</p>
+          <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">Why InvestWise?</h2>
+          <p className="text-center text-gray-600 mb-12">We provide the tools and resources you need to succeed in the market.</p>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg border border-muted/20 bg-main shadow-modern">
+            <div className="p-6 rounded-lg border border-gray-200 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="mb-4">
                 <Image src="/performance.svg" alt="Performance" width={40} height={40} />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-heading">Performance Tracking</h3>
-              <p className="text-main">Track your portfolio's performance in real-time with detailed analytics and insights.</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Performance Tracking</h3>
+              <p className="text-gray-600">Track your portfolio's performance in real-time with detailed analytics and insights.</p>
             </div>
 
-            <div className="p-6 rounded-lg border border-muted/20 bg-main shadow-modern">
+            <div className="p-6 rounded-lg border border-gray-200 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="mb-4">
                 <Image src="/security.svg" alt="Security" width={40} height={40} />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-heading">Secure Investments</h3>
-              <p className="text-main">Your investments are protected with top-tier security measures for your peace of mind.</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Secure Investments</h3>
+              <p className="text-gray-600">Your investments are protected with top-tier security measures for your peace of mind.</p>
             </div>
 
-            <div className="p-6 rounded-lg border border-muted/20 bg-main shadow-modern">
+            <div className="p-6 rounded-lg border border-gray-200 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="mb-4">
                 <Image src="/community.svg" alt="Community" width={40} height={40} />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-heading">Community Support</h3>
-              <p className="text-main">Join our vibrant investor community to share ideas, learn from experts, and stay informed.</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Community Support</h3>
+              <p className="text-gray-600">Join our vibrant investor community to share ideas, learn from experts, and stay informed.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Investment Section */}
-      <section id="invest" className="py-16 bg-main">
+      {/* Investment Section - Siyah */}
+      <section id="invest" className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-heading">Investment Opportunities</h2>
-          <p className="text-center text-muted mb-12 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold mb-12 text-white">Investment Opportunities</h2>
+          <p className="text-center text-gray-300 mb-12 max-w-3xl mx-auto">
             Explore our wide range of portfolio options across various risk levels and sectors. 
             Achieve your financial goals with investment instruments analyzed by our expert team.
           </p>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-card rounded-lg overflow-hidden shadow-modern">
+            <div className="bg-gray-900 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-800">
               <div className="relative h-48">
                 <Image src="/images/real_estate_fund.jpg" alt="Real Estate" fill className="object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-heading">Real Estate Fund</h3>
-                <p className="text-main">Invest in high-yield real estate portfolio.</p>
+                <h3 className="text-xl font-semibold mb-2 text-white">Real Estate Fund</h3>
+                <p className="text-gray-300">Invest in high-yield real estate portfolio.</p>
               </div>
             </div>
 
-            <div className="bg-card rounded-lg overflow-hidden shadow-modern">
+            <div className="bg-gray-900 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-800">
               <div className="relative h-48">
                 <Image src="/images/technology_growth_portfolio.jpg" alt="Technology" fill className="object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-heading">Technology Growth Portfolio</h3>
-                <p className="text-main">Benefit from the growth of leading technology companies with our carefully curated portfolio.</p>
+                <h3 className="text-xl font-semibold mb-2 text-white">Technology Growth Portfolio</h3>
+                <p className="text-gray-300">Benefit from the growth of leading technology companies with our carefully curated portfolio.</p>
               </div>
             </div>
 
-            <div className="bg-card rounded-lg overflow-hidden shadow-modern">
+            <div className="bg-gray-900 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-800">
               <div className="relative h-48">
                 <Image src="/images/sustainable_living_investments.jpg" alt="Sustainable Living" fill className="object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-heading">Sustainable Living Investments</h3>
-                <p className="text-main">Sustainable investment option supporting environmentally friendly ventures and companies.</p>
+                <h3 className="text-xl font-semibold mb-2 text-white">Sustainable Living Investments</h3>
+                <p className="text-gray-300">Sustainable investment option supporting environmentally friendly ventures and companies.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Learn Section */}
-      <section id="learn" className="py-16 bg-card">
-                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <h2 className="text-3xl font-bold mb-12 text-center text-heading">Learn</h2>
-           <p className="text-center text-muted mb-12 max-w-3xl mx-auto">
-             Acquire the knowledge and skills necessary to succeed in the investment world. Develop yourself 
-             with comprehensive educational materials prepared by our expert instructors.
-           </p>
+      {/* Learn Section - Beyaz */}
+      <section id="learn" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">Learn</h2>
+          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            Acquire the knowledge and skills necessary to succeed in the investment world. Develop yourself 
+            with comprehensive educational materials prepared by our expert instructors.
+          </p>
           
           <div className="grid md:grid-cols-3 gap-8">
-                         <div className="bg-main p-6 rounded-lg shadow-modern">
-               <h3 className="text-xl font-semibold mb-4 text-heading">Basic Investment Education</h3>
-               <p className="text-main mb-4">Take your first step into the investment world. Learn basic concepts, risk management, and portfolio creation.</p>
-               <ul className="text-sm text-main space-y-2">
-                 <li>• Investment instruments introduction</li>
-                 <li>• Risk assessment</li>
-                 <li>• Portfolio diversification</li>
-                 <li>• Market analysis fundamentals</li>
-               </ul>
-             </div>
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Basic Investment Education</h3>
+              <p className="text-gray-600 mb-4">Take your first step into the investment world. Learn basic concepts, risk management, and portfolio creation.</p>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• Investment instruments introduction</li>
+                <li>• Risk assessment</li>
+                <li>• Portfolio diversification</li>
+                <li>• Market analysis fundamentals</li>
+              </ul>
+            </div>
 
-             <div className="bg-main p-6 rounded-lg shadow-modern">
-               <h3 className="text-xl font-semibold mb-4 text-heading">Advanced Strategies</h3>
-               <p className="text-main mb-4">Advanced analysis techniques and strategy development for experienced investors.</p>
-               <ul className="text-sm text-main space-y-2">
-                 <li>• Technical analysis</li>
-                 <li>• Fundamental analysis</li>
-                 <li>• Derivative instruments</li>
-                 <li>• Algorithmic investing</li>
-               </ul>
-             </div>
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Advanced Strategies</h3>
+              <p className="text-gray-600 mb-4">Advanced analysis techniques and strategy development for experienced investors.</p>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• Technical analysis</li>
+                <li>• Fundamental analysis</li>
+                <li>• Derivative instruments</li>
+                <li>• Algorithmic investing</li>
+              </ul>
+            </div>
 
-             <div className="bg-main p-6 rounded-lg shadow-modern">
-               <h3 className="text-xl font-semibold mb-4 text-heading">Market Updates</h3>
-               <p className="text-main mb-4">Current market analysis, economic indicators, and expert opinions.</p>
-               <ul className="text-sm text-main space-y-2">
-                 <li>• Daily market analysis</li>
-                 <li>• Weekly reports</li>
-                 <li>• Expert webinars</li>
-                 <li>• Sector evaluations</li>
-               </ul>
-             </div>
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Market Updates</h3>
+              <p className="text-gray-600 mb-4">Current market analysis, economic indicators, and expert opinions.</p>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• Daily market analysis</li>
+                <li>• Weekly reports</li>
+                <li>• Expert webinars</li>
+                <li>• Sector evaluations</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Community Section */}
-      <section id="community" className="py-16 bg-gray-50">
-                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <h2 className="text-3xl font-bold mb-12 text-center">Community</h2>
-           <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-             Join our community of thousands of investors. Share your experiences, 
-             learn from experts, and achieve success together.
-           </p>
+      {/* Community Section - Koyu Gri */}
+      <section id="community" className="py-16 bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-12 text-center text-white">Community</h2>
+          <p className="text-center text-gray-300 mb-12 max-w-3xl mx-auto">
+            Join our community of thousands of investors. Share your experiences, 
+            learn from experts, and achieve success together.
+          </p>
           
           <div className="grid md:grid-cols-2 gap-8">
-                         <div className="bg-white p-8 rounded-lg shadow">
-               <h3 className="text-xl font-semibold mb-4">Discussion Forums</h3>
-               <p className="text-gray-600 mb-6">
-                 Active forum areas for investment strategies, market analysis, and experience sharing.
-               </p>
-               <div className="space-y-3">
-                 <div className="flex items-center justify-between bg-gray-50 p-3 rounded">
-                   <span className="text-sm font-medium">Stock Commentary</span>
-                   <span className="text-xs text-gray-500">2.3k members</span>
-                 </div>
-                 <div className="flex items-center justify-between bg-gray-50 p-3 rounded">
-                   <span className="text-sm font-medium">Cryptocurrency</span>
-                   <span className="text-xs text-gray-500">1.8k members</span>
-                 </div>
-                 <div className="flex items-center justify-between bg-gray-50 p-3 rounded">
-                   <span className="text-sm font-medium">Real Estate Investment</span>
-                   <span className="text-xs text-gray-500">1.2k members</span>
-                 </div>
-               </div>
-             </div>
+            <div className="bg-gray-700 p-8 rounded-lg shadow-xl border border-gray-600">
+              <h3 className="text-xl font-semibold mb-4 text-white">Discussion Forums</h3>
+              <p className="text-gray-300 mb-6">
+                Active forum areas for investment strategies, market analysis, and experience sharing.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between bg-gray-600 p-3 rounded">
+                  <span className="text-sm font-medium text-white">Stock Commentary</span>
+                  <span className="text-xs text-gray-300">2.3k members</span>
+                </div>
+                <div className="flex items-center justify-between bg-gray-600 p-3 rounded">
+                  <span className="text-sm font-medium text-white">Cryptocurrency</span>
+                  <span className="text-xs text-gray-300">1.8k members</span>
+                </div>
+                <div className="flex items-center justify-between bg-gray-600 p-3 rounded">
+                  <span className="text-sm font-medium text-white">Real Estate Investment</span>
+                  <span className="text-xs text-gray-300">1.2k members</span>
+                </div>
+              </div>
+            </div>
 
-             <div className="bg-white p-8 rounded-lg shadow">
-               <h3 className="text-xl font-semibold mb-4">Expert Events</h3>
-               <p className="text-gray-600 mb-6">
-                 Webinar, seminar, and workshop events organized with expert speakers in their fields.
-               </p>
-               <div className="space-y-3">
-                 <div className="border-l-4 border-blue-500 pl-4">
-                   <h4 className="font-medium">Weekly Market Analysis</h4>
-                   <p className="text-sm text-gray-600">Every Thursday 7:00 PM</p>
-                 </div>
-                 <div className="border-l-4 border-green-500 pl-4">
-                   <h4 className="font-medium">Investment Strategies Seminar</h4>
-                   <p className="text-sm text-gray-600">Monthly organized</p>
-                 </div>
-                 <div className="border-l-4 border-purple-500 pl-4">
-                   <h4 className="font-medium">Beginners Workshop</h4>
-                   <p className="text-sm text-gray-600">Every Saturday 2:00 PM</p>
-                 </div>
-               </div>
-             </div>
+            <div className="bg-gray-700 p-8 rounded-lg shadow-xl border border-gray-600">
+              <h3 className="text-xl font-semibold mb-4 text-white">Expert Events</h3>
+              <p className="text-gray-300 mb-6">
+                Webinar, seminar, and workshop events organized with expert speakers in their fields.
+              </p>
+              <div className="space-y-3">
+                <div className="border-l-4 border-blue-400 pl-4">
+                  <h4 className="font-medium text-white">Weekly Market Analysis</h4>
+                  <p className="text-sm text-gray-300">Every Thursday 7:00 PM</p>
+                </div>
+                <div className="border-l-4 border-green-400 pl-4">
+                  <h4 className="font-medium text-white">Investment Strategies Seminar</h4>
+                  <p className="text-sm text-gray-300">Monthly organized</p>
+                </div>
+                <div className="border-l-4 border-purple-400 pl-4">
+                  <h4 className="font-medium text-white">Beginners Workshop</h4>
+                  <p className="text-sm text-gray-300">Every Saturday 2:00 PM</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Support Section */}
-      <section id="support" className="py-16 bg-white">
-                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <h2 className="text-3xl font-bold mb-12 text-center">Support</h2>
-           <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-             Our 24/7 customer support team is always with you. We answer your questions, 
-             help with technical issues, and guide you in your investment decisions.
-           </p>
+      {/* Support Section - Açık Gri */}
+      <section id="support" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">Support</h2>
+          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            Our 24/7 customer support team is always with you. We answer your questions, 
+            help with technical issues, and guide you in your investment decisions.
+          </p>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
+            <div className="text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">📞</span>
               </div>
-                             <h3 className="text-xl font-semibold mb-2">Phone Support</h3>
-               <p className="text-gray-600 mb-4">24/7 phone support line you can reach</p>
-               <p className="font-semibold text-blue-600">0850 123 45 67</p>
-             </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Phone Support</h3>
+              <p className="text-gray-600 mb-4">24/7 phone support line you can reach</p>
+              <p className="font-semibold text-blue-600">0850 123 45 67</p>
+            </div>
 
-             <div className="text-center p-6">
-               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                 <span className="text-2xl">💬</span>
-               </div>
-               <h3 className="text-xl font-semibold mb-2">Live Chat</h3>
-               <p className="text-gray-600 mb-4">Live chat support where you can get instant responses</p>
-               <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                 Start Chat
-               </button>
-             </div>
+            <div className="text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">💬</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Live Chat</h3>
+              <p className="text-gray-600 mb-4">Live chat support where you can get instant responses</p>
+              <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors duration-200">
+                Start Chat
+              </button>
+            </div>
 
-             <div className="text-center p-6">
-               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                 <span className="text-2xl">📧</span>
-               </div>
-               <h3 className="text-xl font-semibold mb-2">Email Support</h3>
-               <p className="text-gray-600 mb-4">Email support for your detailed questions</p>
-               <p className="font-semibold text-purple-600">support@investwise.com</p>
+            <div className="text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📧</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Email Support</h3>
+              <p className="text-gray-600 mb-4">Email support for your detailed questions</p>
+              <p className="font-semibold text-purple-600">support@investwise.com</p>
             </div>
           </div>
 
-                     <div className="mt-12 bg-gray-50 p-8 rounded-lg">
-             <h3 className="text-2xl font-semibold mb-6 text-center">Frequently Asked Questions</h3>
-             <div className="grid md:grid-cols-2 gap-6">
-               <div>
-                 <h4 className="font-semibold mb-2">How does the account opening process work?</h4>
-                 <p className="text-gray-600 text-sm">Your account becomes active within 24 hours with identity verification.</p>
-               </div>
-               <div>
-                 <h4 className="font-semibold mb-2">What is the minimum investment amount?</h4>
-                 <p className="text-gray-600 text-sm">You can start investing with a minimum of $500 for beginners.</p>
-               </div>
-               <div>
-                 <h4 className="font-semibold mb-2">How long does the withdrawal process take?</h4>
-                 <p className="text-gray-600 text-sm">Withdrawal requests are transferred to your account within 1-3 business days.</p>
-               </div>
-               <div>
-                 <h4 className="font-semibold mb-2">Is there an investment advisory service?</h4>
-                 <p className="text-gray-600 text-sm">Yes, you can request a free consultation from our expert advisors.</p>
-               </div>
-             </div>
-           </div>
+          <div className="mt-12 bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+            <h3 className="text-2xl font-semibold mb-6 text-center text-gray-900">Frequently Asked Questions</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-2 text-gray-900">How does the account opening process work?</h4>
+                <p className="text-gray-600 text-sm">Your account becomes active within 24 hours with identity verification.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2 text-gray-900">What is the minimum investment amount?</h4>
+                <p className="text-gray-600 text-sm">You can start investing with a minimum of $500 for beginners.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2 text-gray-900">How long does the withdrawal process take?</h4>
+                <p className="text-gray-600 text-sm">Withdrawal requests are transferred to your account within 1-3 business days.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2 text-gray-900">Is there an investment advisory service?</h4>
+                <p className="text-gray-600 text-sm">Yes, you can request a free consultation from our expert advisors.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Performance Metrics */}
-      <section className="py-16 bg-gray-50">
+      {/* Performance Metrics - Koyu Gri */}
+      <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12">Performance Metrics</h2>
+          <h2 className="text-3xl font-bold mb-12 text-white">Performance Metrics</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg">
-              <h3 className="text-lg text-gray-600 mb-2">Average Return</h3>
-              <p className="text-4xl font-bold">12.5%</p>
+            <div className="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+              <h3 className="text-lg text-gray-300 mb-2">Average Return</h3>
+              <p className="text-4xl font-bold text-white">12.5%</p>
             </div>
-            <div className="bg-white p-6 rounded-lg">
-              <h3 className="text-lg text-gray-600 mb-2">Customer Satisfaction</h3>
-              <p className="text-4xl font-bold">95%</p>
+            <div className="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+              <h3 className="text-lg text-gray-300 mb-2">Customer Satisfaction</h3>
+              <p className="text-4xl font-bold text-white">95%</p>
             </div>
-            <div className="bg-white p-6 rounded-lg">
-              <h3 className="text-lg text-gray-600 mb-2">Assets Under Management</h3>
-              <p className="text-4xl font-bold">$2B+</p>
+            <div className="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+              <h3 className="text-lg text-gray-300 mb-2">Assets Under Management</h3>
+              <p className="text-4xl font-bold text-white">$2B+</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-12">
+      {/* Footer - Siyah */}
+      <footer className="bg-black border-t border-gray-800 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link>
-            <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
-            <Link href="/privacy" className="text-gray-600 hover:text-gray-900">Privacy Policy</Link>
-            <Link href="/terms" className="text-gray-600 hover:text-gray-900">Terms of Service</Link>
+            <Link href="/about" className="text-gray-300 hover:text-white transition-colors duration-200">About</Link>
+            <Link href="/contact" className="text-gray-300 hover:text-white transition-colors duration-200">Contact</Link>
+            <Link href="/privacy" className="text-gray-300 hover:text-white transition-colors duration-200">Privacy Policy</Link>
+            <Link href="/terms" className="text-gray-300 hover:text-white transition-colors duration-200">Terms of Service</Link>
           </div>
           <div className="flex justify-center space-x-6">
-            <Link href="#" className="text-gray-400 hover:text-gray-500">
+            <Link href="#" className="text-gray-400 hover:text-gray-200 transition-colors duration-200">
               <span className="sr-only">Twitter</span>
               <Image src="/twitter.svg" alt="Twitter" width={24} height={24} />
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-gray-500">
+            <Link href="#" className="text-gray-400 hover:text-gray-200 transition-colors duration-200">
               <span className="sr-only">Facebook</span>
               <Image src="/facebook.svg" alt="Facebook" width={24} height={24} />
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-gray-500">
+            <Link href="#" className="text-gray-400 hover:text-gray-200 transition-colors duration-200">
               <span className="sr-only">Instagram</span>
               <Image src="/instagram.svg" alt="Instagram" width={24} height={24} />
             </Link>
           </div>
-          <p className="text-center text-gray-500 mt-8">©2025 InvestWise. All rights reserved.</p>
+          <p className="text-center text-gray-400 mt-8">©2025 InvestWise. All rights reserved.</p>
         </div>
       </footer>
 

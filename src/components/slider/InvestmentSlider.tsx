@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, TrendingUp, TrendingDown, Globe, RefreshCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TrendingUp, TrendingDown, Globe, RefreshCw, Calculator } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCurrency } from '../../hooks/useCurrency';
@@ -115,6 +115,15 @@ const InvestmentSlider = () => {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-light">Exchange Rates</h3>
                 <div className="flex items-center space-x-4">
+                  <motion.button
+                    onClick={() => router.push('/currency-converter')}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    <Calculator className="w-4 h-4" />
+                    <span>Currency Converter</span>
+                  </motion.button>
                   <button
                     onClick={handleRefresh}
                     disabled={currencyLoading}

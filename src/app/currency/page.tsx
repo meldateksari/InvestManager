@@ -10,7 +10,7 @@ import TradingViewChart from '../../components/tradingView/TradingViewChart';
 import { currencyToTradingViewSymbol, formatSymbolName } from '../../utils/currencyUtils';
 
 const CurrencyPage = () => {
-  const { currencies, loading, refresh } = useCurrency();
+  const { currencies, loading, refreshing, refresh } = useCurrency();
   const [selectedCurrency, setSelectedCurrency] = React.useState<string>('USD');
   const [showChart, setShowChart] = React.useState(true); // Varsayılan olarak açık
 
@@ -259,6 +259,7 @@ const CurrencyPage = () => {
           <CurrencyList
             currencies={currencies}
             loading={loading}
+            refreshing={refreshing}
             onRefresh={refresh}
             onCurrencySelect={handleCurrencySelect}
           />

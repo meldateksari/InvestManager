@@ -492,7 +492,7 @@ const PortfolioPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-gray-100">
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -902,35 +902,35 @@ const PortfolioPage = () => {
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-800 mb-2">
-                          Yatırım Adı
+                          Investment Name
                         </label>
                         <input
                           type="text"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 font-medium placeholder-gray-600"
-                          placeholder="Örn: Bitcoin, Gram Altın"
+                          placeholder="e.g. Bitcoin, Gram Gold"
                           required
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-800 mb-2">
-                          Sembol/Kod
+                          Symbol/Code
                         </label>
                         <input
                           type="text"
                           value={formData.symbol}
                           onChange={(e) => setFormData({ ...formData, symbol: e.target.value })}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 font-medium placeholder-gray-600"
-                          placeholder="Örn: BTC, XAU"
+                          placeholder="e.g. BTC, XAU"
                           required
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-800 mb-2">
-                          Miktar
+                          Quantity
                         </label>
                         <input
                           type="number"
@@ -938,14 +938,14 @@ const PortfolioPage = () => {
                           value={formData.quantity}
                           onChange={(e) => setFormData({ ...formData, quantity: parseFloat(e.target.value) || 0 })}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 font-medium placeholder-gray-600"
-                          placeholder="Miktar girin"
+                          placeholder="Enter quantity"
                           required
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-800 mb-2">
-                          Birim Fiyat (₺)
+                          Unit Price (₺)
                         </label>
                         <input
                           type="number"
@@ -953,14 +953,14 @@ const PortfolioPage = () => {
                           value={formData.unitPrice}
                           onChange={(e) => setFormData({ ...formData, unitPrice: parseFloat(e.target.value) || 0 })}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 font-medium placeholder-gray-600"
-                          placeholder="Birim fiyat girin"
+                          placeholder="Enter unit price"
                           required
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-800 mb-2">
-                          Alış Tarihi
+                          Purchase Date
                         </label>
                         <input
                           type="date"
@@ -973,35 +973,35 @@ const PortfolioPage = () => {
 
                       <div className="md:col-span-2">
                         <label className="block text-sm font-semibold text-gray-800 mb-2">
-                          Alış Yeri
+                          Purchase Location
                         </label>
                         <input
                           type="text"
                           value={formData.purchaseLocation}
                           onChange={(e) => setFormData({ ...formData, purchaseLocation: e.target.value })}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 font-medium placeholder-gray-600"
-                          placeholder="Örn: Binance, Ziraat Bankası, BtcTurk"
+                          placeholder="e.g. Binance, Ziraat Bank, BtcTurk"
                           required
                         />
                       </div>
 
                       <div className="md:col-span-2">
                         <label className="block text-sm font-semibold text-gray-800 mb-2">
-                          Notlar (Opsiyonel)
+                          Notes (Optional)
                         </label>
                         <textarea
                           value={formData.notes}
                           onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 font-medium placeholder-gray-600"
                           rows={3}
-                          placeholder="Ek notlarınız..."
+                          placeholder="Your notes..."
                         />
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between pt-4">
                       <div className="text-sm text-gray-600">
-                        <strong>Toplam Maliyet: </strong>
+                        <strong>Total Cost: </strong>
                         {formatCurrency(formData.quantity * formData.unitPrice)}
                       </div>
                       <button
@@ -1010,7 +1010,7 @@ const PortfolioPage = () => {
                         className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
                       >
                         <Save className="w-5 h-5" />
-                        <span>{isSubmitting ? 'Kaydediliyor...' : editingInvestment ? 'Güncelle' : 'Kaydet'}</span>
+                        <span>{isSubmitting ? 'Saving...' : editingInvestment ? 'Update' : 'Save'}</span>
                       </button>
                     </div>
                   </form>
@@ -1022,10 +1022,10 @@ const PortfolioPage = () => {
                 <div className="p-6 border-b border-gray-200">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-bold text-gray-900">
-                      {selectedDate ? `${formatDate(selectedDate)} Tarihindeki Yatırımlarım` : 'Tüm Yatırımlarım'}
+                      {selectedDate ? `Investments on ${formatDate(selectedDate)}` : 'All My Investments'}
                     </h3>
                     <span className="text-sm text-gray-500">
-                      {filteredInvestments.length} yatırım
+                      {filteredInvestments.length} investment{filteredInvestments.length !== 1 ? 's' : ''}
                     </span>
                   </div>
                 </div>
@@ -1034,12 +1034,12 @@ const PortfolioPage = () => {
                   <div className="p-8 text-center">
                     <BarChart3 className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-gray-900 mb-2">
-                      {selectedDate ? 'Bu tarihte yatırımınız yok' : 'Henüz yatırımınız yok'}
+                      {selectedDate ? 'No investments on this date' : 'You have no investments yet'}
                     </h3>
                     <p className="text-gray-600">
                       {selectedDate 
-                        ? 'Farklı bir tarih seçin veya bu tarihe yatırım ekleyin' 
-                        : 'İlk yatırımınızı eklemek için yukarıdaki butonu kullanın'
+                        ? 'Select another date or add an investment for this date' 
+                        : 'Use the button above to add your first investment'
                       }
                     </p>
                   </div>
@@ -1049,25 +1049,25 @@ const PortfolioPage = () => {
                       <thead className="bg-gray-50">
                         <tr>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Yatırım
+                            Investment
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Miktar
+                            Quantity
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Birim Fiyat
+                            Unit Price
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Toplam Maliyet
+                            Total Cost
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Alış Tarihi
+                            Purchase Date
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            Alış Yeri
+                            Purchase Location
                           </th>
                           <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                            İşlemler
+                            Actions
                           </th>
                         </tr>
                       </thead>

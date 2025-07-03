@@ -4,12 +4,19 @@ import { CurrencyRate, CurrencyResponse } from '../types/currency';
 export const useCurrency = () => {
   const [currencies, setCurrencies] = useState<CurrencyRate[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  const fetchCurrencies = useCallback(async () => {
+  const fetchCurrencies = useCallback(async (isManualRefresh = false) => {
     try {
-      setLoading(true);
+      if (isInitialLoad) {
+        setLoading(true);
+      } else if (isManualRefresh) {
+        setRefreshing(true);
+      }
+      
       setError(null);
       
       const response = await fetch('/api/currency');
@@ -20,44 +27,47 @@ export const useCurrency = () => {
         setLastUpdated(new Date());
       } else {
         setError(data.error || 'Döviz kurları alınamadı');
-        // Hata durumunda da mock data'yı kullan
         setCurrencies(data.data);
       }
     } catch (err) {
       setError('Ağ hatası: Döviz kurları yüklenemedi');
       console.error('Currency fetch error:', err);
     } finally {
-      setLoading(false);
+      if (isInitialLoad) {
+        setLoading(false);
+        setIsInitialLoad(false);
+      } else if (isManualRefresh) {
+        setRefreshing(false);
+      }
     }
-  }, []);
+  }, [isInitialLoad]);
 
-  // İlk yükleme
   useEffect(() => {
     fetchCurrencies();
   }, [fetchCurrencies]);
 
-  // 30 saniyede bir otomatik güncelleme
   useEffect(() => {
     const interval = setInterval(() => {
-      fetchCurrencies();
-    }, 30000); // 30 saniye
+      if (!isInitialLoad) {
+        fetchCurrencies(false);
+      }
+    }, 30000);
 
     return () => clearInterval(interval);
-  }, [fetchCurrencies]);
+  }, [fetchCurrencies, isInitialLoad]);
 
-  // Belirli bir dövizi bulma
   const getCurrencyByCode = useCallback((code: string): CurrencyRate | undefined => {
     return currencies.find(currency => currency.code === code);
   }, [currencies]);
 
-  // Manuel yenileme
   const refresh = useCallback(() => {
-    fetchCurrencies();
+    fetchCurrencies(true);
   }, [fetchCurrencies]);
 
   return {
     currencies,
     loading,
+    refreshing,
     error,
     lastUpdated,
     refresh,

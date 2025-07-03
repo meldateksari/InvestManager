@@ -714,15 +714,15 @@ const ProfilePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-main">
+    <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <div className="bg-accent text-light shadow-modern-lg">
+      <div className="bg-white text-gray-900 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link 
                 href="/" 
-                className="flex items-center space-x-2 text-light hover:text-yellow-300 transition-all duration-300 group"
+                className="flex items-center space-x-2 text-gray-900 hover:text-yellow-500 transition-all duration-300 group"
               >
                 <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -731,8 +731,8 @@ const ProfilePage = () => {
               </Link>
             </div>
             <div className="text-center">
-              <h1 className="text-3xl font-bold mb-1 text-light">User Profile</h1>
-              <p className="text-light/80 text-sm">Manage your investment information</p>
+              <h1 className="text-3xl font-bold mb-1 text-gray-900">User Profile</h1>
+              <p className="text-gray-500 text-sm">Manage your investment information</p>
             </div>
             <div className="w-32"></div> {/* Spacer for centering */}
           </div>
@@ -743,103 +743,98 @@ const ProfilePage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
               {/* Profil Fotoğrafı */}
-                             <div className="bg-gradient-to-b from-indigo-500 to-purple-600 px-6 pt-8 pb-6 text-center text-white">
-                 <div className="relative inline-block">
-                   <div className="w-28 h-28 rounded-full bg-white/20 backdrop-blur-sm mx-auto flex items-center justify-center text-white text-3xl font-bold border-4 border-white/30 relative overflow-hidden">
-                     {uploadingPhoto && (
-                       <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                         <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                       </div>
-                     )}
-                     {profile.avatar ? (
-                       <img src={profile.avatar} alt="Profile" className="w-28 h-28 rounded-full object-cover" />
-                     ) : (
-                       (profile.firstName?.[0] || 'U').toUpperCase()
-                     )}
-                   </div>
-                   
-                   {/* Photo Edit Buttons */}
-                   <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
-                     {/* Storage ile yükleme */}
-                     <input
-                       type="file"
-                       accept="image/*"
-                       onChange={handlePhotoUpload}
-                       className="hidden"
-                       id="photo-upload-storage"
-                       disabled={uploadingPhoto}
-                     />
-                     <label
-                       htmlFor="photo-upload-storage"
-                       className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 shadow-lg transition-colors cursor-pointer"
-                       title="Upload with Storage (5MB)"
-                     >
-                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                       </svg>
-                     </label>
-
-                     {/* Base64 ile yükleme */}
-                     <input
-                       type="file"
-                       accept="image/*"
-                       onChange={handlePhotoUploadBase64}
-                       className="hidden"
-                       id="photo-upload-base64"
-                       disabled={uploadingPhoto}
-                     />
-                     <label
-                       htmlFor="photo-upload-base64"
-                       className="bg-green-500 hover:bg-green-600 text-white rounded-full p-2 shadow-lg transition-colors cursor-pointer"
-                       title="Upload with Base64 (1MB)"
-                     >
-                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                       </svg>
-                     </label>
-                     
-                     {profile.avatar && (
-                       <button
-                         onClick={handlePhotoRemove}
-                         disabled={uploadingPhoto}
-                         className="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 shadow-lg transition-colors"
-                         title="Remove Photo"
-                       >
-                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                         </svg>
-                       </button>
-                     )}
-                   </div>
-                 </div>
-                <h3 className="mt-4 text-xl font-bold">
+              <div className="bg-gradient-to-b from-gray-100 to-gray-200 px-6 pt-8 pb-6 text-center text-gray-900">
+                <div className="relative inline-block">
+                  <div className="w-28 h-28 rounded-full bg-gray-200 mx-auto flex items-center justify-center text-gray-700 text-3xl font-bold border-4 border-gray-300 relative overflow-hidden">
+                    {uploadingPhoto && (
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      </div>
+                    )}
+                    {profile.avatar ? (
+                      <img src={profile.avatar} alt="Profile" className="w-28 h-28 rounded-full object-cover" />
+                    ) : (
+                      (profile.firstName?.[0] || 'U').toUpperCase()
+                    )}
+                  </div>
+                  {/* Photo Edit Buttons */}
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                    {/* Storage ile yükleme */}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handlePhotoUpload}
+                      className="hidden"
+                      id="photo-upload-storage"
+                      disabled={uploadingPhoto}
+                    />
+                    <label
+                      htmlFor="photo-upload-storage"
+                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 shadow-lg transition-colors cursor-pointer"
+                      title="Upload with Storage (5MB)"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                    </label>
+                    {/* Base64 ile yükleme */}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handlePhotoUploadBase64}
+                      className="hidden"
+                      id="photo-upload-base64"
+                      disabled={uploadingPhoto}
+                    />
+                    <label
+                      htmlFor="photo-upload-base64"
+                      className="bg-green-500 hover:bg-green-600 text-white rounded-full p-2 shadow-lg transition-colors cursor-pointer"
+                      title="Upload with Base64 (1MB)"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                    </label>
+                    {profile.avatar && (
+                      <button
+                        onClick={handlePhotoRemove}
+                        disabled={uploadingPhoto}
+                        className="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 shadow-lg transition-colors"
+                        title="Remove Photo"
+                      >
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-gray-900">
                   {profile.firstName || 'First Name'} {profile.lastName || 'Last Name'}
                 </h3>
-                <p className="text-blue-100 text-sm mt-1">
+                <p className="text-gray-500 text-sm mt-1">
                   {profile.occupation || 'Occupation Not Specified'}
                 </p>
                 <div className="mt-3 space-y-2">
-                  <div className="bg-white/10 rounded-lg px-3 py-2">
-                    <p className="text-blue-100 text-xs">
+                  <div className="bg-gray-200 rounded-lg px-3 py-2">
+                    <p className="text-gray-500 text-xs">
                       Membership: {profile.joinDate || 'Unknown'}
                     </p>
                   </div>
-                
                 </div>
               </div>
-
               {/* Navigation */}
-              <nav className="p-4 space-y-2">
+              <nav className="p-4 space-y-2 bg-white">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-300 font-medium ${
                       activeTab === tab.id
-                        ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg transform scale-105'
-                        : 'text-gray-800 hover:bg-indigo-50 hover:text-indigo-600'
+                        ? 'bg-gradient-to-r from-gray-200 to-gray-100 text-gray-900 shadow-lg transform scale-105'
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                     }`}
                   >
                     <span className="text-lg">{tab.icon}</span>
@@ -852,15 +847,15 @@ const ProfilePage = () => {
 
           {/* Main Content */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-200">
               {/* Tab Header */}
-              <div className="bg-gradient-to-r from-gray-50 to-indigo-50 px-8 py-6 border-b border-gray-200 rounded-t-2xl">
+              <div className="bg-gradient-to-r from-gray-100 to-gray-50 px-8 py-6 border-b border-gray-200 rounded-t-2xl">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-1">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-1">
                       {tabs.find(tab => tab.id === activeTab)?.label}
                     </h2>
-                    <p className="text-gray-700 text-sm">
+                    <p className="text-gray-500 text-sm">
                       {activeTab === 'kisisel' && 'Update your basic information'}
                       {activeTab === 'yatirim' && 'Set your investment preferences'}
                       {activeTab === 'istatistik' && 'View your investment performance'}
@@ -872,7 +867,7 @@ const ProfilePage = () => {
                       {isEditing && (
                         <button
                           onClick={() => setIsEditing(false)}
-                          className="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
+                          className="px-4 py-2 text-gray-500 hover:text-gray-900 font-medium transition-colors"
                         >
                           Cancel
                         </button>
@@ -883,7 +878,7 @@ const ProfilePage = () => {
                         className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg ${
                           isEditing
                             ? 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white'
-                            : 'bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white'
+                            : 'bg-gradient-to-r from-gray-200 to-gray-100 hover:from-gray-300 hover:to-gray-200 text-gray-900'
                         }`}
                       >
                         {saving ? (
@@ -911,16 +906,15 @@ const ProfilePage = () => {
                   )}
                 </div>
               </div>
-
               {/* Tab Content */}
-              <div className="p-8">
+              <div className="p-8 bg-white rounded-b-2xl">
                 {activeTab === 'kisisel' && (
                   <div className="space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           <span className="flex items-center space-x-2">
-                            <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                             <span>First Name</span>
@@ -932,17 +926,17 @@ const ProfilePage = () => {
                           onChange={(e) => handleInputChange('firstName', e.target.value)}
                           disabled={!isEditing}
                           placeholder="Enter your first name"
-                          className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-300 text-gray-800 font-medium ${
+                          className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-300 text-gray-700 font-medium ${
                             isEditing 
-                              ? 'border-indigo-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 bg-white' 
-                              : 'border-gray-200 bg-gray-50 text-gray-700'
+                              ? 'border-gray-300 focus:border-gray-500 focus:ring-4 focus:ring-gray-100 bg-gray-200' 
+                              : 'border-gray-300 bg-gray-200 text-gray-700'
                           }`}
                         />
                       </div>
                       <div className="space-y-2">
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           <span className="flex items-center space-x-2">
-                            <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                             <span>Last Name</span>
@@ -954,10 +948,10 @@ const ProfilePage = () => {
                           onChange={(e) => handleInputChange('lastName', e.target.value)}
                           disabled={!isEditing}
                           placeholder="Enter your last name"
-                          className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-300 text-gray-800 font-medium ${
+                          className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-300 text-gray-700 font-medium ${
                             isEditing 
-                              ? 'border-indigo-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 bg-white' 
-                              : 'border-gray-200 bg-gray-50 text-gray-700'
+                              ? 'border-gray-300 focus:border-gray-500 focus:ring-4 focus:ring-gray-100 bg-gray-200' 
+                              : 'border-gray-300 bg-gray-200 text-gray-700'
                           }`}
                         />
                       </div>
@@ -966,7 +960,7 @@ const ProfilePage = () => {
                     <div className="space-y-2">
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center space-x-2">
-                          <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a1 1 0 001.42 0L21 7M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                           </svg>
                           <span>Email</span>
@@ -976,7 +970,7 @@ const ProfilePage = () => {
                         type="email"
                         value={profile.email}
                         disabled
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-700 font-medium"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-gray-200 text-gray-700 font-medium"
                       />
                       <p className="text-xs text-gray-500 mt-2 flex items-center space-x-1">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -989,7 +983,7 @@ const ProfilePage = () => {
                     <div className="space-y-2">
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center space-x-2">
-                          <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                           </svg>
                           <span>About Me</span>
@@ -1000,10 +994,10 @@ const ProfilePage = () => {
                         onChange={(e) => handleInputChange('bio', e.target.value)}
                         disabled={!isEditing}
                         rows={4}
-                        className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-300 text-gray-800 font-medium resize-none ${
+                        className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-300 text-gray-700 font-medium resize-none ${
                           isEditing 
-                            ? 'border-indigo-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 bg-white' 
-                            : 'border-gray-200 bg-gray-50 text-gray-700'
+                            ? 'border-gray-300 focus:border-gray-500 focus:ring-4 focus:ring-gray-100 bg-gray-200' 
+                            : 'border-gray-300 bg-gray-200 text-gray-700'
                         }`}
                         placeholder="Write a brief description about yourself, your investment experience and goals..."
                       />
@@ -1011,7 +1005,7 @@ const ProfilePage = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label className="block text-sm font-medium text-gray-500 mb-2">
                         Phone
                       </label>
                       <input
@@ -1019,11 +1013,11 @@ const ProfilePage = () => {
                         value={profile.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
                         disabled={!isEditing}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50 text-gray-800"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-100 disabled:bg-gray-200 text-gray-700"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label className="block text-sm font-medium text-gray-500 mb-2">
                         Birth Date
                       </label>
                       <input
@@ -1031,14 +1025,14 @@ const ProfilePage = () => {
                         value={profile.birthDate}
                         onChange={(e) => handleInputChange('birthDate', e.target.value)}
                         disabled={!isEditing}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50 text-gray-800"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-100 disabled:bg-gray-200 text-gray-700"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label className="block text-sm font-medium text-gray-500 mb-2">
                         Country
                       </label>
                       <input
@@ -1046,11 +1040,11 @@ const ProfilePage = () => {
                         value={profile.country}
                         onChange={(e) => handleInputChange('country', e.target.value)}
                         disabled={!isEditing}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50  text-gray-800"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-100 disabled:bg-gray-200 text-gray-700"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label className="block text-sm font-medium text-gray-500 mb-2">
                         City
                       </label>
                       <input
@@ -1058,13 +1052,13 @@ const ProfilePage = () => {
                         value={profile.city}
                         onChange={(e) => handleInputChange('city', e.target.value)}
                         disabled={!isEditing}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50  text-gray-800"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-100 disabled:bg-gray-200 text-gray-700"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-2">
+                    <label className="block text-sm font-medium text-gray-500 mb-2">
                       Occupation
                     </label>
                     <input
@@ -1072,7 +1066,7 @@ const ProfilePage = () => {
                       value={profile.occupation}
                       onChange={(e) => handleInputChange('occupation', e.target.value)}
                       disabled={!isEditing}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50 text-gray-800"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-100 disabled:bg-gray-200 text-gray-700"
                     />
                   </div>
                 </div>
@@ -1082,14 +1076,14 @@ const ProfilePage = () => {
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label className="block text-sm font-medium text-gray-500 mb-2">
                         Investment Experience
                       </label>
                       <select
                         value={profile.investmentExperience}
                         onChange={(e) => handleInputChange('investmentExperience', e.target.value)}
                         disabled={!isEditing}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50 text-gray-800"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-100 disabled:bg-gray-200 text-gray-700"
                       >
                         <option value="Beginner">Beginner (0-1 year)</option>
                         <option value="Intermediate">Intermediate (1-3 years)</option>
@@ -1098,14 +1092,14 @@ const ProfilePage = () => {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label className="block text-sm font-medium text-gray-500 mb-2">
                         Risk Tolerance
                       </label>
                       <select
                         value={profile.riskTolerance}
                         onChange={(e) => handleInputChange('riskTolerance', e.target.value)}
                         disabled={!isEditing}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50 text-gray-800"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-100 disabled:bg-gray-200 text-gray-700"
                       >
                         <option value="Low">Low Risk</option>
                         <option value="Medium">Medium Risk</option>
@@ -1116,7 +1110,7 @@ const ProfilePage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-3">
+                    <label className="block text-sm font-medium text-gray-500 mb-3">
                       Investment Goals
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -1127,16 +1121,16 @@ const ProfilePage = () => {
                             checked={profile.investmentGoals.includes(goal)}
                             onChange={() => handleArrayChange('investmentGoals', goal)}
                             disabled={!isEditing}
-                            className="text-accent focus:ring-accent"
+                            className="text-gray-500 focus:ring-gray-500"
                           />
-                          <span className="text-sm text-secondary">{goal}</span>
+                          <span className="text-sm text-gray-700">{goal}</span>
                         </label>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-3">
+                    <label className="block text-sm font-medium text-gray-500 mb-3">
                       Preferred Asset Types
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -1147,9 +1141,9 @@ const ProfilePage = () => {
                             checked={profile.preferredAssets.includes(asset)}
                             onChange={() => handleArrayChange('preferredAssets', asset)}
                             disabled={!isEditing}
-                            className="text-accent focus:ring-accent"
+                            className="text-gray-500 focus:ring-gray-500"
                           />
-                          <span className="text-sm text-secondary">{asset}</span>
+                          <span className="text-sm text-gray-700">{asset}</span>
                         </label>
                       ))}
                     </div>
@@ -1160,123 +1154,66 @@ const ProfilePage = () => {
               {activeTab === 'istatistik' && (
                 <div className="space-y-8">
                   {/* Gerçek Zamanlı İstatistikler */}
-                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-200">
+                  <div className="bg-gradient-to-r from-gray-200 to-gray-100 rounded-2xl p-6 border border-gray-300">
                     <div className="flex items-center space-x-3 mb-4">
-                      <div className="bg-blue-500 rounded-full p-2">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="bg-gray-100 rounded-full p-2">
+                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-blue-900">Real-Time Statistics</h3>
-                        <p className="text-blue-700 text-sm">Current information calculated from your portfolio data</p>
+                        <h3 className="text-lg font-bold text-gray-700 mb-2">Real-Time Statistics</h3>
+                        <p className="text-gray-500 text-sm">Current information calculated from your portfolio data</p>
                       </div>
                     </div>
-                    <div className="text-xs text-blue-600 bg-blue-100 rounded-lg px-3 py-2">
+                    <div className="text-xs text-gray-500 bg-gray-200 rounded-lg px-3 py-2">
                       📊 You have {investments.length} investment transactions
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-6 text-center text-white shadow-xl">
-                      <div className="text-center">
-                        <svg className="w-12 h-12 mx-auto mb-4 text-blue-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                        </svg>
-                        <div className="text-3xl font-bold mb-2">
-                          ₺{calculatedStats.totalInvestment.toLocaleString('en-US')}
-                        </div>
-                        <div className="text-blue-100 text-sm font-medium">Total Investment</div>
-                        <div className="text-blue-200 text-xs mt-1">
-                          Total amount of investments you made
-                        </div>
-                      </div>
-                    </div>
-                    <div className={`bg-gradient-to-br rounded-2xl p-6 text-center text-white shadow-xl ${
-                      calculatedStats.totalProfit >= 0 
-                        ? 'from-green-500 to-emerald-600' 
-                        : 'from-red-500 to-red-600'
-                    }`}>
-                      <div className="text-center">
-                        <svg className="w-12 h-12 mx-auto mb-4 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          {calculatedStats.totalProfit >= 0 ? (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                          ) : (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0v-8m0 8l-8-8-4 4-6-6" />
-                          )}
-                        </svg>
-                        <div className="text-3xl font-bold mb-2">
-                          {calculatedStats.totalProfit >= 0 ? '+' : ''}₺{calculatedStats.totalProfit.toLocaleString('en-US')}
-                        </div>
-                        <div className="opacity-90 text-sm font-medium">
-                          {calculatedStats.totalProfit >= 0 ? 'Total Profit' : 'Total Loss'}
-                        </div>
-                        <div className="opacity-80 text-xs mt-1">
-                          {calculatedStats.totalInvestment > 0 && (
-                            `${((calculatedStats.totalProfit / calculatedStats.totalInvestment) * 100).toFixed(2)}% return`
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-6 text-center text-white shadow-xl">
-                      <div className="text-center">
-                        <svg className="w-12 h-12 mx-auto mb-4 text-purple-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
-                        <div className="text-3xl font-bold mb-2">
-                          {calculatedStats.portfolioCount}
-                        </div>
-                        <div className="text-purple-100 text-sm font-medium">Different Assets</div>
-                        <div className="text-purple-200 text-xs mt-1">
-                          Investment diversity in your portfolio
-                        </div>
-                      </div>
                     </div>
                   </div>
 
                   {/* Yatırım Özeti */}
                   {investments.length > 0 && (
-                    <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+                    <div className="bg-gray-200 border border-gray-300 rounded-2xl p-6 shadow-lg">
                       <div className="flex items-center space-x-3 mb-4">
-                        <div className="bg-indigo-100 rounded-full p-3">
-                          <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-gray-100 rounded-full p-3">
+                          <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                           </svg>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-800">Investment Summary</h3>
+                        <h3 className="text-xl font-bold text-gray-700">Investment Summary</h3>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div className="bg-blue-50 rounded-xl p-4">
-                          <div className="text-sm font-medium text-blue-800">Total Transactions</div>
-                          <div className="text-2xl font-bold text-blue-900">{investments.length}</div>
-                          <div className="text-xs text-blue-600">Investment transactions</div>
+                        <div className="bg-gray-100 rounded-xl p-4">
+                          <div className="text-sm font-medium text-gray-700">Total Transactions</div>
+                          <div className="text-2xl font-bold text-gray-700">{investments.length}</div>
+                          <div className="text-xs text-gray-500">Investment transactions</div>
                         </div>
-                        <div className="bg-green-50 rounded-xl p-4">
-                          <div className="text-sm font-medium text-green-800">Current Value</div>
-                          <div className="text-2xl font-bold text-green-900">
+                        <div className="bg-gray-100 rounded-xl p-4">
+                          <div className="text-sm font-medium text-gray-700">Current Value</div>
+                          <div className="text-2xl font-bold text-gray-700">
                             ₺{(calculatedStats.totalInvestment + calculatedStats.totalProfit).toLocaleString('en-US')}
                           </div>
-                          <div className="text-xs text-green-600">Current portfolio value</div>
+                          <div className="text-xs text-gray-500">Current portfolio value</div>
                         </div>
-                        <div className="bg-purple-50 rounded-xl p-4">
-                          <div className="text-sm font-medium text-purple-800">First Investment</div>
-                          <div className="text-2xl font-bold text-purple-900">
+                        <div className="bg-gray-100 rounded-xl p-4">
+                          <div className="text-sm font-medium text-gray-700">First Investment</div>
+                          <div className="text-2xl font-bold text-gray-700">
                             {investments.length > 0 
                               ? new Date(Math.min(...investments.map(inv => new Date(inv.purchaseDate).getTime()))).toLocaleDateString('en-US')
                               : '-'
                             }
                           </div>
-                          <div className="text-xs text-purple-600">Earliest purchase date</div>
+                          <div className="text-xs text-gray-500">Earliest purchase date</div>
                         </div>
-                        <div className="bg-orange-50 rounded-xl p-4">
-                          <div className="text-sm font-medium text-orange-800">Last Investment</div>
-                          <div className="text-2xl font-bold text-orange-900">
+                        <div className="bg-gray-100 rounded-xl p-4">
+                          <div className="text-sm font-medium text-gray-700">Last Investment</div>
+                          <div className="text-2xl font-bold text-gray-700">
                             {investments.length > 0 
                               ? new Date(Math.max(...investments.map(inv => new Date(inv.purchaseDate).getTime()))).toLocaleDateString('en-US')
                               : '-'
                             }
                           </div>
-                          <div className="text-xs text-orange-600">Latest purchase date</div>
+                          <div className="text-xs text-gray-500">Latest purchase date</div>
                         </div>
                       </div>
                     </div>
@@ -1284,19 +1221,19 @@ const ProfilePage = () => {
 
                   {/* Yatırım Yoksa Uyarı */}
                   {investments.length === 0 && (
-                    <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-8 text-center">
-                      <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-10 h-10 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="bg-gray-200 border border-gray-300 rounded-2xl p-8 text-center">
+                      <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-10 h-10 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <h3 className="text-xl font-bold text-yellow-800 mb-2">No Investments Yet</h3>
-                      <p className="text-yellow-700 mb-4">
+                      <h3 className="text-xl font-bold text-gray-700 mb-2">No Investments Yet</h3>
+                      <p className="text-gray-500 mb-4">
                         To view your statistics, you need to add investments from the portfolio page first.
                       </p>
                       <Link 
                         href="/portfolio"
-                        className="inline-flex items-center space-x-2 bg-yellow-600 text-white px-6 py-3 rounded-xl hover:bg-yellow-700 transition-colors font-medium"
+                        className="inline-flex items-center space-x-2 bg-gray-100 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-200 transition-colors font-medium"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -1311,42 +1248,42 @@ const ProfilePage = () => {
               {activeTab === 'ayarlar' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-primary mb-4">Notification Settings</h3>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-4">Notification Settings</h3>
                     <div className="space-y-4">
                       <label className="flex items-center justify-between">
-                        <span className="text-secondary">Email Notifications</span>
+                        <span className="text-gray-500">Email Notifications</span>
                         <input
                           type="checkbox"
                           checked={profile.emailNotifications}
                           onChange={(e) => handleInputChange('emailNotifications', e.target.checked)}
                           disabled={!isEditing}
-                          className="text-accent focus:ring-accent"
+                          className="text-gray-500 focus:ring-gray-500"
                         />
                       </label>
                       <label className="flex items-center justify-between">
-                        <span className="text-secondary">Push Notifications</span>
+                        <span className="text-gray-500">Push Notifications</span>
                         <input
                           type="checkbox"
                           checked={profile.pushNotifications}
                           onChange={(e) => handleInputChange('pushNotifications', e.target.checked)}
                           disabled={!isEditing}
-                          className="text-accent focus:ring-accent"
+                          className="text-gray-500 focus:ring-gray-500"
                         />
                       </label>
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-primary mb-4">Privacy Settings</h3>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-4">Privacy Settings</h3>
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label className="block text-sm font-medium text-gray-500 mb-2">
                         Profile Visibility
                       </label>
                       <select
                         value={profile.profileVisibility}
                         onChange={(e) => handleInputChange('profileVisibility', e.target.value)}
                         disabled={!isEditing}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent disabled:bg-gray-50"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-100 disabled:bg-gray-200"
                       >
                         <option value="Public">Public</option>
                         <option value="Followers Only">Followers Only</option>
@@ -1355,12 +1292,12 @@ const ProfilePage = () => {
                     </div>
                   </div>
 
-                  <div className="pt-6 border-t border-gray-200">
+                  <div className="pt-6 border-t border-gray-300">
                     <h3 className="text-lg font-semibold text-red-600 mb-4">Danger Zone</h3>
                     <div className="space-y-4">
                       <button
                         onClick={() => setShowPasswordModal(true)}
-                        className="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2"
+                        className="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-gray-900 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1721 9z" />
@@ -1373,7 +1310,7 @@ const ProfilePage = () => {
                             alert('Account deletion feature will be added soon.');
                           }
                         }}
-                        className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2"
+                        className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-gray-900 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -1393,15 +1330,15 @@ const ProfilePage = () => {
       {/* Şifre Değiştirme Modal */}
       {showPasswordModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
+          <div className="bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-gray-800">Change Password</h3>
+              <h3 className="text-xl font-bold text-gray-300">Change Password</h3>
               <button
                 onClick={() => {
                   setShowPasswordModal(false);
                   setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
                 }}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-500 hover:text-gray-300 transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -1411,52 +1348,52 @@ const ProfilePage = () => {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-800 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Current Password
                 </label>
                 <input
                   type="password"
                   value={passwordData.currentPassword}
                   onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-300 text-gray-800 font-medium"
+                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-xl focus:border-gray-500 focus:ring-4 focus:ring-gray-100 transition-all duration-300 text-gray-300 font-medium"
                   placeholder="Enter your current password"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-800 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   New Password
                 </label>
                 <input
                   type="password"
                   value={passwordData.newPassword}
                   onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-300 text-gray-800 font-medium"
+                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-xl focus:border-gray-500 focus:ring-4 focus:ring-gray-100 transition-all duration-300 text-gray-300 font-medium"
                   placeholder="Enter your new password"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-800 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Confirm New Password
                 </label>
                 <input
                   type="password"
                   value={passwordData.confirmPassword}
                   onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-300 text-gray-800 font-medium"
+                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-xl focus:border-gray-500 focus:ring-4 focus:ring-gray-100 transition-all duration-300 text-gray-300 font-medium"
                   placeholder="Confirm your new password"
                 />
               </div>
 
-              <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+              <div className="bg-gray-700 border border-gray-600 rounded-xl p-4">
                 <div className="flex items-start space-x-2">
-                  <svg className="w-5 h-5 text-yellow-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                   <div>
-                    <p className="text-sm font-medium text-yellow-800">Security Tips:</p>
-                    <ul className="text-xs text-yellow-800 mt-1 space-y-1">
+                    <p className="text-sm font-medium text-gray-500">Security Tips:</p>
+                    <ul className="text-xs text-gray-500 mt-1 space-y-1">
                       <li>• Password must be at least 6 characters</li>
                       <li>• Use uppercase, lowercase, numbers and special characters</li>
                       <li>• Don't use easily guessable information</li>
@@ -1472,13 +1409,13 @@ const ProfilePage = () => {
                   setShowPasswordModal(false);
                   setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
                 }}
-                className="flex-1 px-4 py-3 text-gray-700 hover:text-gray-900 font-medium transition-colors rounded-xl border border-gray-200 hover:bg-gray-50"
+                className="flex-1 px-4 py-3 text-gray-500 hover:text-gray-300 font-medium transition-colors rounded-xl border border-gray-700 hover:bg-gray-800"
               >
                 Cancel
               </button>
               <button
                 onClick={handlePasswordChange}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="flex-1 px-4 py-3 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-gray-300 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Update Password
               </button>
