@@ -164,13 +164,13 @@ export const formatSymbolName = (symbol: string, currencyName?: string): string 
   const upperSymbol = symbol.toUpperCase();
   
   const nameMap: Record<string, string> = {
-    'USD': 'Amerikan Doları',
+    'USD': 'US Dollar',
     'EUR': 'Euro',
-    'GBP': 'İngiliz Sterlini',
-    'JPY': 'Japon Yeni',
-    'CHF': 'İsviçre Frangı',
-    'CAD': 'Kanada Doları',
-    'AUD': 'Avustralya Doları',
+    'GBP': 'British Pound',
+    'JPY': 'Japanese Yen',
+    'CHF': 'Swiss Franc',
+    'CAD': 'Canadian Dollar',
+    'AUD': 'Australian Dollar',
     'AAPL': 'Apple Inc.',
     'GOOGL': 'Alphabet Inc.',
     'MSFT': 'Microsoft Corporation',
@@ -178,9 +178,9 @@ export const formatSymbolName = (symbol: string, currencyName?: string): string 
     'TSLA': 'Tesla Inc.',
     'META': 'Meta Platforms Inc.',
     'NVDA': 'NVIDIA Corporation',
-    'GOLD': 'Altın',
-    'SILVER': 'Gümüş',
-    'OIL': 'Ham Petrol',
+    'GOLD': 'Gold',
+    'SILVER': 'Silver',
+    'OIL': 'Crude Oil',
     'BTC': 'Bitcoin',
     'ETH': 'Ethereum'
   };

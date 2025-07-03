@@ -126,13 +126,13 @@ const HorizontalScroll = () => {
                   className="text-6xl font-black text-white mb-8 opacity-0 translate-y-[-50px]"
                   data-section1-anim="title"
                 >
-                  Uzman Danışmanlık
+                  Expert Consulting
                 </h3>
                 <p 
                   className="text-2xl text-gray-200 opacity-0 translate-y-[-50px]"
                   data-section1-anim="description"
                 >
-                  Kendi tasarımınızı buraya yazın...
+                  Professional investment guidance and portfolio management for optimal returns...
                 </p>
               </div>
             </div>
@@ -150,8 +150,8 @@ const HorizontalScroll = () => {
             <div className="relative z-10 w-full px-8 md:px-16 lg:px-24">
               {/* Buraya Section 2 için özel kodunuzu yazın */}
               <div className="text-center">
-                <h3 className="text-6xl font-black text-white mb-8">Güvenilir Platform</h3>
-                <p className="text-2xl text-gray-200">Kendi tasarımınızı buraya yazın...</p>
+                <h3 className="text-6xl font-black text-white mb-8">Trusted Platform</h3>
+                <p className="text-2xl text-gray-200">Secure, reliable infrastructure with bank-level security for your investments...</p>
               </div>
             </div>
           </div>
@@ -168,8 +168,8 @@ const HorizontalScroll = () => {
             <div className="relative z-10 w-full px-8 md:px-16 lg:px-24">
               {/* Buraya Section 3 için özel kodunuzu yazın */}
               <div className="text-center">
-                <h3 className="text-6xl font-black text-white mb-8">Düşük Komisyon</h3>
-                <p className="text-2xl text-gray-200">Kendi tasarımınızı buraya yazın...</p>
+                <h3 className="text-6xl font-black text-white mb-8">Low Commission</h3>
+                <p className="text-2xl text-gray-200">Competitive rates and transparent pricing with no hidden fees...</p>
               </div>
             </div>
           </div>
@@ -186,8 +186,8 @@ const HorizontalScroll = () => {
             <div className="relative z-10 w-full px-8 md:px-16 lg:px-24">
               {/* Buraya Section 4 için özel kodunuzu yazın */}
               <div className="text-center">
-                <h3 className="text-6xl font-black text-white mb-8">Gelişmiş Teknoloji</h3>
-                <p className="text-2xl text-gray-200">Kendi tasarımınızı buraya yazın...</p>
+                <h3 className="text-6xl font-black text-white mb-8">Advanced Technology</h3>
+                <p className="text-2xl text-gray-200">Cutting-edge tools and real-time analytics for smart investment decisions...</p>
               </div>
             </div>
           </div>

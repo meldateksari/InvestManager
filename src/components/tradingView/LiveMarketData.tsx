@@ -29,10 +29,10 @@ const LiveMarketData: React.FC<LiveMarketDataProps> = ({
   // Popüler semboller
   const popularSymbols = {
     forex: [
-      { code: 'USD', name: 'Amerikan Doları' },
+      { code: 'USD', name: 'US Dollar' },
       { code: 'EUR', name: 'Euro' },
-      { code: 'GBP', name: 'İngiliz Sterlini' },
-      { code: 'JPY', name: 'Japon Yeni' }
+      { code: 'GBP', name: 'British Pound' },
+      { code: 'JPY', name: 'Japanese Yen' }
     ],
     crypto: [
       { code: 'BTC', name: 'Bitcoin' },
@@ -47,10 +47,10 @@ const LiveMarketData: React.FC<LiveMarketDataProps> = ({
       { code: 'TSLA', name: 'Tesla Inc.' }
     ],
     commodity: [
-      { code: 'GOLD', name: 'Altın' },
-      { code: 'SILVER', name: 'Gümüş' },
-      { code: 'OIL', name: 'Ham Petrol' },
-      { code: 'BRENT', name: 'Brent Petrol' }
+      { code: 'GOLD', name: 'Gold' },
+      { code: 'SILVER', name: 'Silver' },
+      { code: 'OIL', name: 'Crude Oil' },
+      { code: 'BRENT', name: 'Brent Oil' }
     ]
   };
 
@@ -104,8 +104,8 @@ const LiveMarketData: React.FC<LiveMarketDataProps> = ({
           <div className="flex items-center space-x-3">
             <BarChart3 className="w-6 h-6 text-blue-600" />
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Canlı Piyasa Verileri</h2>
-              <p className="text-sm text-gray-600">Hisse, kripto, döviz ve emtia grafiklerini görüntüleyin</p>
+              <h2 className="text-xl font-bold text-gray-900">Live Market Data</h2>
+              <p className="text-sm text-gray-600">View charts for stocks, crypto, forex and commodities</p>
             </div>
           </div>
         </div>
@@ -116,7 +116,7 @@ const LiveMarketData: React.FC<LiveMarketDataProps> = ({
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Sembol ara (örn: AAPL, BTC, EUR, GOLD)..."
+              placeholder="Search symbol (e.g: AAPL, BTC, EUR, GOLD)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
@@ -129,7 +129,7 @@ const LiveMarketData: React.FC<LiveMarketDataProps> = ({
             onClick={handleSearch}
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
           >
-            Grafik Göster
+            Show Chart
           </motion.button>
         </div>
 
@@ -140,9 +140,9 @@ const LiveMarketData: React.FC<LiveMarketDataProps> = ({
               <div className="flex items-center space-x-2 mb-3">
                 {getTypeIcon(type)}
                 <h3 className="font-medium text-gray-900 capitalize">
-                  {type === 'forex' ? 'Döviz' : 
-                   type === 'crypto' ? 'Kripto' :
-                   type === 'stock' ? 'Hisse' : 'Emtia'}
+                  {type === 'forex' ? 'Forex' : 
+                   type === 'crypto' ? 'Crypto' :
+                   type === 'stock' ? 'Stocks' : 'Commodities'}
                 </h3>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -181,7 +181,7 @@ const LiveMarketData: React.FC<LiveMarketDataProps> = ({
                   </span>
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Gerçek zamanlı fiyat hareketleri ve teknik analiz
+                  Real-time price movements and technical analysis
                 </p>
               </div>
             </div>

@@ -97,16 +97,6 @@ export default function TradingViewChart({
         className="w-full rounded-lg overflow-hidden bg-white border border-gray-200"
         style={{ height: `${height}px` }}
       />
-      <div className="mt-2 text-xs text-gray-500 text-center">
-        <a 
-          href="https://www.tradingview.com" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:text-blue-800"
-        >
-          TradingView tarafından desteklenmektedir
-        </a>
-      </div>
     </div>
   );
 } 

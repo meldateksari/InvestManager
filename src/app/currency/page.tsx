@@ -99,11 +99,11 @@ const CurrencyPage = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Anlık Döviz Kurları
+            Live Exchange Rates
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
-            Türk Lirası karşısında tüm major dövizlerin güncel kurlarını takip edin. 
-            Veriler gerçek zamanlı olarak güncellenmektedir.
+            Track current rates of all major currencies against Turkish Lira. 
+            Data is updated in real-time.
           </p>
           
           {/* Quick Chart Buttons */}
@@ -117,7 +117,7 @@ const CurrencyPage = () => {
                 className="flex items-center space-x-2 bg-white text-gray-700 px-4 py-2 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 shadow-sm"
               >
                 <BarChart3 className="w-4 h-4" />
-                <span className="font-medium">{code} Grafiği</span>
+                                 <span className="font-medium">{code} Chart</span>
               </motion.button>
             ))}
           </div>
@@ -137,10 +137,10 @@ const CurrencyPage = () => {
                 <BarChart3 className="w-6 h-6 text-blue-600" />
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">
-                    {formatSymbolName(selectedCurrency, selectedCurrencyData.name)} Grafiği
+                    {formatSymbolName(selectedCurrency, selectedCurrencyData.name)} Chart
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Anlık fiyat hareketleri ve teknik analiz
+                    Real-time price movements and technical analysis
                   </p>
                 </div>
               </div>
@@ -188,21 +188,21 @@ const CurrencyPage = () => {
             {/* Ortalama Değişim */}
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Ortalama Değişim</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Average Change</h3>
                 <TrendingUp className={`w-6 h-6 ${averageChange >= 0 ? 'text-green-500' : 'text-red-500'}`} />
               </div>
               <div className={`text-2xl font-bold ${averageChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                 {averageChange >= 0 ? '+' : ''}{averageChange.toFixed(2)}%
               </div>
               <p className="text-sm text-gray-600 mt-2">
-                Tüm dövizlerin ortalama performansı
+                Average performance of all currencies
               </p>
             </div>
 
             {/* En Çok Yükselen */}
             <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-6 border border-green-100">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">En Çok Yükselen</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Top Gainers</h3>
                 <div className="text-2xl">📈</div>
               </div>
               {topGainers.length > 0 ? (
@@ -219,14 +219,14 @@ const CurrencyPage = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-600">Yükselen döviz yok</p>
+                <p className="text-sm text-gray-600">No rising currencies</p>
               )}
             </div>
 
             {/* En Çok Düşen */}
             <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl shadow-lg p-6 border border-red-100">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">En Çok Düşen</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Top Losers</h3>
                 <div className="text-2xl">📉</div>
               </div>
               {topLosers.length > 0 ? (
@@ -243,7 +243,7 @@ const CurrencyPage = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-600">Düşen döviz yok</p>
+                <p className="text-sm text-gray-600">No falling currencies</p>
               )}
             </div>
           </motion.div>
@@ -273,31 +273,31 @@ const CurrencyPage = () => {
         >
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Döviz Kurları Hakkında
+              About Exchange Rates
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <span className="mr-2">💡</span>
-                  Bilmeniz Gerekenler
+                  What You Should Know
                 </h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    Kurlar 30 saniyede bir otomatik güncellenir
+                    Rates are automatically updated every 30 seconds
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    Alış ve satış fiyatları farklı gösterilir
+                    Buy and sell prices are displayed separately
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    Günlük değişim yüzdesi hesaplanır
+                    Daily change percentage is calculated
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    Tüm fiyatlar Türk Lirası bazındadır
+                    All prices are based on Turkish Lira
                   </li>
                 </ul>
               </div>
@@ -305,24 +305,24 @@ const CurrencyPage = () => {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                   <span className="mr-2">⚠️</span>
-                  Önemli Uyarılar
+                  Important Warnings
                 </h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-orange-600 mr-2">•</span>
-                    Kurlar yatırım tavsiyesi değildir
+                    Rates are not investment advice
                   </li>
                   <li className="flex items-start">
                     <span className="text-orange-600 mr-2">•</span>
-                    İşlem yapmadan önce güncel kurları kontrol edin
+                    Check current rates before making transactions
                   </li>
                   <li className="flex items-start">
                     <span className="text-orange-600 mr-2">•</span>
-                    Banka kurları farklılık gösterebilir
+                    Bank rates may differ
                   </li>
                   <li className="flex items-start">
                     <span className="text-orange-600 mr-2">•</span>
-                    Yatırım kararlarınızı uzman görüşü alarak verin
+                    Make investment decisions with expert advice
                   </li>
                 </ul>
               </div>
