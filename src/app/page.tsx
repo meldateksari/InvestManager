@@ -16,7 +16,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("invest");
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
 
   const navItems = [
     { id: "invest", label: "Invest", href: "#invest" },
@@ -321,7 +321,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-card rounded-lg overflow-hidden shadow-modern">
               <div className="relative h-48">
-                <Image src="/real-estate.jpg" alt="Real Estate" fill className="object-cover" />
+                <Image src="/images/real_estate_fund.jpg" alt="Real Estate" fill className="object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2 text-heading">Real Estate Fund</h3>
@@ -331,7 +331,7 @@ export default function Home() {
 
             <div className="bg-card rounded-lg overflow-hidden shadow-modern">
               <div className="relative h-48">
-                <Image src="/tech.jpg" alt="Technology" fill className="object-cover" />
+                <Image src="/images/technology_growth_portfolio.jpg" alt="Technology" fill className="object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2 text-heading">Technology Growth Portfolio</h3>
@@ -341,7 +341,7 @@ export default function Home() {
 
             <div className="bg-card rounded-lg overflow-hidden shadow-modern">
               <div className="relative h-48">
-                <Image src="/sustainable.jpg" alt="Sustainable Living" fill className="object-cover" />
+                <Image src="/images/sustainable_living_investments.jpg" alt="Sustainable Living" fill className="object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2 text-heading">Sustainable Living Investments</h3>
@@ -561,7 +561,7 @@ export default function Home() {
               <Image src="/instagram.svg" alt="Instagram" width={24} height={24} />
             </Link>
           </div>
-          <p className="text-center text-gray-500 mt-8">©2024 InvestWise. All rights reserved.</p>
+          <p className="text-center text-gray-500 mt-8">©2025 InvestWise. All rights reserved.</p>
         </div>
       </footer>
 
