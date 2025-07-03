@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/app/context/AuthContext';
-import { useCurrency } from '@/app/hooks/useCurrency';
+import { useAuth } from '../../context/AuthContext';
+import { useCurrency } from '../../hooks/useCurrency';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -24,7 +24,7 @@ import {
   Filter
 } from 'lucide-react';
 import Link from 'next/link';
-import { db } from '@/lib/firebase';
+import { db } from '../../lib/firebase';
 import { 
   collection, 
   addDoc, 

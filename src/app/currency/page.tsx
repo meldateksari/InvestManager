@@ -4,8 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowLeft, TrendingUp, Globe, Clock } from 'lucide-react';
-import { useCurrency } from '../hooks/useCurrency';
-import CurrencyList from '../components/currency/CurrencyList';
+import { useCurrency } from '../../hooks/useCurrency';
+import CurrencyList from '../../components/currency/CurrencyList';
 
 const CurrencyPage = () => {
   const { currencies, loading, error, lastUpdated, refresh } = useCurrency();

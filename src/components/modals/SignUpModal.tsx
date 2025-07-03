@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { db, auth } from '../../../lib/firebase';
+import { db, auth } from '../../lib/firebase';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useCountries } from '../../hooks/useCountries';

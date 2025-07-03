@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import SignUpModal from '../modals/SignUpModal';
 import LoginModal from '../modals/LoginModal';
-import { useAuth } from '@/app/context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import UserMenu from '../navbar/UserMenu';
 
 const AuthButtons = () => {

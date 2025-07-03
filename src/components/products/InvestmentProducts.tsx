@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useSymbols, Symbol } from '@/app/hooks/useSymbols';
+import { useSymbols, Symbol } from '../../hooks/useSymbols';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface InvestmentProductsProps {
