@@ -62,7 +62,7 @@ const InvestmentSlider = () => {
   };
 
   return (
-    <div className="relative w-full bg-accent py-16">
+    <div className="relative w-full bg-gray-400/40 backdrop-blur-lg backdrop-filter py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -119,7 +119,7 @@ const InvestmentSlider = () => {
                     onClick={() => router.push('/currency-converter')}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                    className="flex items-center space-x-2 px-4 py-2 bg-black hover:bg-black/80 text-white rounded-lg transition-all duration-300 shadow-xl hover:shadow-2xl border border-gray-700"
                   >
                     <Calculator className="w-4 h-4" />
                     <span>Currency Converter</span>
@@ -166,7 +166,7 @@ const InvestmentSlider = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="bg-light/12 backdrop-blur-md rounded-2xl p-5 hover:bg-light/18 transition-all duration-300 cursor-pointer group border border-light/15 shadow-lg hover:shadow-2xl"
+                      className="bg-light/25 backdrop-blur-md rounded-2xl p-5 hover:bg-light/35 transition-all duration-300 cursor-pointer group border border-light/15 shadow-lg hover:shadow-2xl"
                       onClick={() => router.push('/currency')}
                     >
                       <div className="flex items-center space-x-3 mb-3">
@@ -297,7 +297,7 @@ const InvestmentSlider = () => {
                         <div className="relative">
                           {/* Main Card */}
                           <motion.div
-                            className="backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 cursor-pointer bg-light/10 border-light/20"
+                            className="backdrop-blur-md rounded-2xl p-6 border transition-all duration-300 cursor-pointer bg-light/25 border-light/20"
                             whileHover={{
                               boxShadow: "0 25px 50px -12px rgba(49, 130, 206, 0.25)",
                               borderColor: '#3182CE'

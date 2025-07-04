@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Currency conversion error:', error);
     return NextResponse.json(
-      { error: 'Failed to convert currency', details: error.message },
+      { error: 'Failed to convert currency', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
