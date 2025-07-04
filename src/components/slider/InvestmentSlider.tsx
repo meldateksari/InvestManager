@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCurrency } from '../../hooks/useCurrency';
 import { useSymbols } from '../../hooks/useSymbols';
+import { useLanguage } from '../../context/LanguageContext';
 
 // Currency flag helper function
 const getCurrencyFlag = (currencyCode: string): string => {
@@ -26,9 +27,10 @@ const InvestmentSlider = () => {
   const router = useRouter();
   const { currencies, loading: currencyLoading, refresh } = useCurrency();
   const { symbols, loading: symbolsLoading, fetchSymbols } = useSymbols();
+  const { translations } = useLanguage();
 
   const selectedCurrencies = currencies.slice(0, 8);
-  const displaySymbols = symbols.slice(0, 8); // İlk 8 sembolu göster
+  const displaySymbols = symbols.slice(0, 8);
 
   const itemsPerView = 3;
   const maxIndex = Math.max(0, displaySymbols.length - itemsPerView);
@@ -67,10 +69,10 @@ const InvestmentSlider = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-light mb-4">
-            Live Market Data
+            {translations.currency.live_market.title}
           </h2>
           <p className="text-xl text-light/90 mb-6">
-            Real-time prices and current investment opportunities
+            {translations.currency.live_market.subtitle}
           </p>
           
           {/* Tab Navigation */}
@@ -85,7 +87,7 @@ const InvestmentSlider = () => {
                 }`}
               >
                 <Globe className="w-4 h-4" />
-                <span>Currency Rates</span>
+                <span>{translations.currency.live_market.exchange_rates}</span>
               </button>
               <button
                 onClick={() => setActiveTab('investments')}
@@ -95,7 +97,7 @@ const InvestmentSlider = () => {
                     : 'text-light hover:bg-light/10'
                 }`}
               >
-                Market Data
+                {translations.currency.live_market.market_data}
               </button>
             </div>
           </div>
@@ -113,7 +115,7 @@ const InvestmentSlider = () => {
             >
               {/* Currency Header */}
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-light">Exchange Rates</h3>
+                <h3 className="text-2xl font-bold text-light">{translations.currency.live_market.exchange_rates}</h3>
                 <div className="flex items-center space-x-4">
                   <motion.button
                     onClick={() => router.push('/currency-converter')}
@@ -122,7 +124,7 @@ const InvestmentSlider = () => {
                     className="flex items-center space-x-2 px-4 py-2 bg-black hover:bg-black/80 text-white rounded-lg transition-all duration-300 shadow-xl hover:shadow-2xl border border-gray-700"
                   >
                     <Calculator className="w-4 h-4" />
-                    <span>Currency Converter</span>
+                    <span>{translations.currency.converter}</span>
                   </motion.button>
                   <button
                     onClick={handleRefresh}
@@ -130,13 +132,13 @@ const InvestmentSlider = () => {
                     className="flex items-center space-x-2 px-4 py-2 bg-light/10 hover:bg-light/20 rounded-lg transition-colors text-light disabled:opacity-50"
                   >
                     <RefreshCw className={`w-4 h-4 ${currencyLoading ? 'animate-spin' : ''}`} />
-                    <span>Refresh</span>
+                    <span>{translations.currency.live_market.refresh}</span>
                   </button>
                   <Link
                     href="/currency"
                     className="px-4 py-2 bg-card hover:bg-card/90 text-heading rounded-lg transition-colors shadow-modern"
                   >
-                    View All
+                    {translations.currency.live_market.view_all}
                   </Link>
                 </div>
               </div>
@@ -219,7 +221,7 @@ const InvestmentSlider = () => {
               {!currencyLoading && selectedCurrencies.length > 0 && (
                 <div className="mt-6 text-center">
                   <p className="text-light/80 text-sm">
-                    Last updated: {new Date().toLocaleTimeString('en-US')}
+                    {translations.currency.live_market.last_updated}: {new Date().toLocaleTimeString('en-US')}
                   </p>
                 </div>
               )}
@@ -354,7 +356,7 @@ const InvestmentSlider = () => {
                           {/* Expanded Details on Hover */}
                           <AnimatePresence>
                             {hoveredItem === (symbol.id || symbol.symbol || `symbol-${index}`) && (
-                                                              <motion.div
+                              <motion.div
                                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -382,9 +384,9 @@ const InvestmentSlider = () => {
                                   </div>
                                 </div>
                                 
-                                                <button className="w-full mt-3 bg-accent text-light py-2 rounded-lg hover:bg-accent/90 transition-colors">
-                  View Details
-                </button>
+                                <button className="w-full mt-3 bg-accent text-light py-2 rounded-lg hover:bg-accent/90 transition-colors">
+                                  View Details
+                                </button>
                               </motion.div>
                             )}
                           </AnimatePresence>
@@ -420,7 +422,7 @@ const InvestmentSlider = () => {
                   className="flex items-center space-x-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-white disabled:opacity-50"
                 >
                   <RefreshCw className={`w-4 h-4 ${symbolsLoading ? 'animate-spin' : ''}`} />
-                  <span>Refresh Data</span>
+                  <span>{translations.currency.live_market.refresh}</span>
                 </button>
               </div>
             </motion.div>

@@ -1,0 +1,222 @@
+{
+  "common": {
+    "welcome": "InvestWise'a Hoş Geldiniz",
+    "login": "Giriş Yap",
+    "signup": "Kayıt Ol",
+    "profile": "Profil",
+    "portfolio": "Portföy",
+    "invest": "Yatırım Yap",
+    "currency": "Döviz",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı"
+  },
+  "navigation": {
+    "invest": "Yatırım Yap",
+    "exchange_rates": "Döviz Kurları",
+    "learn": "Öğren",
+    "community": "Topluluk",
+    "support": "Destek",
+    "my_portfolio": "Portföyüm"
+  },
+  "home": {
+    "hero": {
+      "title_part1": "Geleceğinize",
+      "title_part2": "yatırım yapın",
+      "title_part3": "InvestWise ile",
+      "subtitle_part1": "Bugün servetinizi oluşturmaya başlayın",
+      "subtitle_part2": "kullanımı kolay platformumuz",
+      "subtitle_part3": " ile. Hisse senetleri, ETF'ler ve daha fazlasına güvenle yatırım yapın."
+    },
+    "ticker": {
+      "stocks": "📈 AAPL +2.5%",
+      "crypto": "💰 BTC $45,320",
+      "forex": "🏦 USD/TRY 30.15",
+      "index": "📊 S&P 500 +1.2%",
+      "commodities": "💎 Altın $2,045"
+    },
+    "get_started": "Hemen Başla",
+    "features": {
+      "title": "Neden InvestWise?",
+      "subtitle": "Piyasada başarılı olmanız için ihtiyacınız olan araçları ve kaynakları sunuyoruz.",
+      "performance": {
+        "title": "Performans Takibi",
+        "description": "Portföyünüzün performansını detaylı analizler ve içgörülerle gerçek zamanlı takip edin."
+      },
+      "security": {
+        "title": "Güvenli Yatırımlar",
+        "description": "Yatırımlarınız, gönül rahatlığınız için üst düzey güvenlik önlemleriyle korunmaktadır."
+      },
+      "community": {
+        "title": "Topluluk Desteği",
+        "description": "Fikirleri paylaşmak, uzmanlardan öğrenmek ve bilgi sahibi olmak için canlı yatırımcı topluluğumuza katılın."
+      }
+    },
+    "investment": {
+      "title": "Yatırım Fırsatları",
+      "subtitle": "Çeşitli risk seviyeleri ve sektörler arasında geniş portföy seçeneklerimizi keşfedin. Uzman ekibimiz tarafından analiz edilen yatırım araçlarıyla finansal hedeflerinize ulaşın.",
+      "real_estate": {
+        "title": "Gayrimenkul Fonu",
+        "description": "Yüksek getirili gayrimenkul portföyüne yatırım yapın."
+      },
+      "tech": {
+        "title": "Teknoloji Büyüme Portföyü",
+        "description": "Özenle seçilmiş portföyümüzle lider teknoloji şirketlerinin büyümesinden faydalanın."
+      },
+      "sustainable": {
+        "title": "Sürdürülebilir Yaşam Yatırımları",
+        "description": "Çevre dostu girişimleri ve şirketleri destekleyen sürdürülebilir yatırım seçeneği."
+      }
+    },
+    "learn": {
+      "title": "Öğrenin",
+      "subtitle": "Yatırım dünyasında başarılı olmak için gerekli bilgi ve becerileri edinin. Uzman eğitmenlerimiz tarafından hazırlanan kapsamlı eğitim materyalleriyle kendinizi geliştirin.",
+      "basic": {
+        "title": "Temel Yatırım Eğitimi",
+        "description": "Yatırım dünyasına ilk adımınızı atın. Temel kavramları, risk yönetimini ve portföy oluşturmayı öğrenin.",
+        "topics": [
+          "Yatırım araçları tanıtımı",
+          "Risk değerlendirmesi",
+          "Portföy çeşitlendirmesi",
+          "Piyasa analizi temelleri"
+        ]
+      },
+      "advanced": {
+        "title": "İleri Stratejiler",
+        "description": "Deneyimli yatırımcılar için ileri analiz teknikleri ve strateji geliştirme.",
+        "topics": [
+          "Teknik analiz",
+          "Temel analiz",
+          "Türev araçlar",
+          "Algoritmik yatırım"
+        ]
+      },
+      "market": {
+        "title": "Piyasa Güncellemeleri",
+        "description": "Güncel piyasa analizleri, ekonomik göstergeler ve uzman görüşleri.",
+        "topics": [
+          "Günlük piyasa analizi",
+          "Haftalık raporlar",
+          "Uzman webinarları",
+          "Sektör değerlendirmeleri"
+        ]
+      }
+    },
+    "community": {
+      "title": "Topluluk",
+      "subtitle": "Binlerce yatırımcıdan oluşan topluluğumuza katılın. Deneyimlerinizi paylaşın, uzmanlardan öğrenin ve birlikte başarıya ulaşın.",
+      "forums": {
+        "title": "Tartışma Forumları",
+        "description": "Yatırım stratejileri, piyasa analizi ve deneyim paylaşımı için aktif forum alanları.",
+        "categories": {
+          "stocks": "Hisse Senedi Yorumları",
+          "crypto": "Kripto Para",
+          "real_estate": "Gayrimenkul Yatırımı"
+        }
+      },
+      "events": {
+        "title": "Uzman Etkinlikleri",
+        "description": "Alanında uzman konuşmacılarla düzenlenen webinar, seminer ve atölye etkinlikleri.",
+        "types": {
+          "market_analysis": "Haftalık Piyasa Analizi",
+          "investment_strategies": "Yatırım Stratejileri Semineri",
+          "beginners_workshop": "Yeni Başlayanlar Atölyesi"
+        }
+      }
+    },
+    "support": {
+      "title": "Destek",
+      "subtitle": "7/24 müşteri destek ekibimiz her zaman yanınızda. Sorularınızı yanıtlıyor, teknik konularda yardımcı oluyor ve yatırım kararlarınızda size rehberlik ediyoruz.",
+      "phone": {
+        "title": "Telefon Desteği",
+        "description": "7/24 ulaşabileceğiniz telefon destek hattı"
+      },
+      "live_chat": {
+        "title": "Canlı Sohbet",
+        "description": "Anında yanıt alabileceğiniz canlı sohbet desteği"
+      },
+      "email": {
+        "title": "E-posta Desteği",
+        "description": "Detaylı sorularınız için e-posta desteği"
+      }
+    },
+    "faq": {
+      "title": "Sıkça Sorulan Sorular",
+      "questions": {
+        "account": {
+          "question": "Hesap açma süreci nasıl işliyor?",
+          "answer": "Kimlik doğrulamasıyla hesabınız 24 saat içinde aktif hale gelir."
+        },
+        "min_investment": {
+          "question": "Minimum yatırım tutarı nedir?",
+          "answer": "Yeni başlayanlar için minimum 500$ ile yatırıma başlayabilirsiniz."
+        },
+        "withdrawal": {
+          "question": "Para çekme işlemi ne kadar sürer?",
+          "answer": "Para çekme talepleri 1-3 iş günü içinde hesabınıza aktarılır."
+        },
+        "advisory": {
+          "question": "Yatırım danışmanlığı hizmeti var mı?",
+          "answer": "Evet, uzman danışmanlarımızdan ücretsiz danışmanlık talep edebilirsiniz."
+        }
+      }
+    },
+    "metrics": {
+      "average_return": {
+        "title": "Ortalama Getiri",
+        "value": "12.5%"
+      },
+      "customer_satisfaction": {
+        "title": "Müşteri Memnuniyeti",
+        "value": "95%"
+      },
+      "assets": {
+        "title": "Yönetilen Varlıklar",
+        "value": "$2B+"
+      }
+    }
+  },
+  "auth": {
+    "email": "E-posta",
+    "password": "Şifre",
+    "forgot_password": "Şifremi Unuttum?",
+    "login_with_google": "Google ile Devam Et",
+    "create_account": "Hesap Oluştur",
+    "already_have_account": "Zaten hesabınız var mı?",
+    "dont_have_account": "Hesabınız yok mu?",
+    "sign_in": "Giriş Yap",
+    "sign_up": "Kayıt Ol",
+    "logout": "Çıkış Yap"
+  },
+  "portfolio": {
+    "my_investments": "Yatırımlarım",
+    "total_value": "Toplam Değer",
+    "performance": "Performans",
+    "portfolio_empty": "Portföyünüz boş",
+    "add_investment": "Yatırım Ekle"
+  },
+  "currency": {
+    "converter": "Döviz Çevirici",
+    "from": "Kaynak",
+    "to": "Hedef",
+    "amount": "Miktar",
+    "convert": "Çevir",
+    "result": "Sonuç",
+    "exchange_rate": "Döviz Kuru",
+    "live_market": {
+      "title": "Canlı Piyasa Verileri",
+      "subtitle": "Gerçek zamanlı fiyatlar ve güncel yatırım fırsatları",
+      "exchange_rates": "Döviz Kurları",
+      "market_data": "Piyasa Verileri",
+      "refresh": "Yenile",
+      "view_all": "Tümünü Gör",
+      "last_updated": "Son güncelleme"
+    }
+  },
+  "errors": {
+    "invalid_email": "Lütfen geçerli bir e-posta adresi girin",
+    "invalid_password": "Şifre en az 6 karakter olmalıdır",
+    "login_failed": "Giriş başarısız. Lütfen tekrar deneyin.",
+    "signup_failed": "Kayıt başarısız. Lütfen tekrar deneyin."
+  }
+} 

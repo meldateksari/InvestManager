@@ -1,26 +1,26 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
-import { AuthProvider } from '../context/AuthContext'
+'use client';
 
-const inter = Inter({ subsets: ['latin'] })
+import './globals.css';
+import { Inter } from 'next/font/google';
+import { AuthProvider } from '../context/AuthContext';
+import { LanguageProvider } from '../context/LanguageContext';
 
-export const metadata = {
-  title: 'InvestManager',
-  description: 'Investment management platform',
-}
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="tr">
+    <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          {children}
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
         </AuthProvider>
       </body>
     </html>
-  )
+  );
 }

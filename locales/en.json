@@ -1,0 +1,222 @@
+{
+  "common": {
+    "welcome": "Welcome to InvestWise",
+    "login": "Login",
+    "signup": "Sign Up",
+    "profile": "Profile",
+    "portfolio": "Portfolio",
+    "invest": "Invest",
+    "currency": "Currency",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "navigation": {
+    "invest": "Invest",
+    "exchange_rates": "Exchange Rates",
+    "learn": "Learn",
+    "community": "Community",
+    "support": "Support",
+    "my_portfolio": "My Portfolio"
+  },
+  "home": {
+    "hero": {
+      "title_part1": "Invest in your",
+      "title_part2": "future",
+      "title_part3": "with InvestWise",
+      "subtitle_part1": "Start building your wealth today with our",
+      "subtitle_part2": "easy-to-use platform",
+      "subtitle_part3": ". Invest confidently in stocks, ETFs, and more."
+    },
+    "ticker": {
+      "stocks": "📈 AAPL +2.5%",
+      "crypto": "💰 BTC $45,320",
+      "forex": "🏦 USD/TRY 30.15",
+      "index": "📊 S&P 500 +1.2%",
+      "commodities": "💎 Gold $2,045"
+    },
+    "get_started": "Get Started",
+    "features": {
+      "title": "Why InvestWise?",
+      "subtitle": "We provide the tools and resources you need to succeed in the market.",
+      "performance": {
+        "title": "Performance Tracking",
+        "description": "Track your portfolio's performance in real-time with detailed analytics and insights."
+      },
+      "security": {
+        "title": "Secure Investments",
+        "description": "Your investments are protected with top-tier security measures for your peace of mind."
+      },
+      "community": {
+        "title": "Community Support",
+        "description": "Join our vibrant investor community to share ideas, learn from experts, and stay informed."
+      }
+    },
+    "investment": {
+      "title": "Investment Opportunities",
+      "subtitle": "Explore our wide range of portfolio options across various risk levels and sectors. Achieve your financial goals with investment instruments analyzed by our expert team.",
+      "real_estate": {
+        "title": "Real Estate Fund",
+        "description": "Invest in high-yield real estate portfolio."
+      },
+      "tech": {
+        "title": "Technology Growth Portfolio",
+        "description": "Benefit from the growth of leading technology companies with our carefully curated portfolio."
+      },
+      "sustainable": {
+        "title": "Sustainable Living Investments",
+        "description": "Sustainable investment option supporting environmentally friendly ventures and companies."
+      }
+    },
+    "learn": {
+      "title": "Learn",
+      "subtitle": "Acquire the knowledge and skills necessary to succeed in the investment world. Develop yourself with comprehensive educational materials prepared by our expert instructors.",
+      "basic": {
+        "title": "Basic Investment Education",
+        "description": "Take your first step into the investment world. Learn basic concepts, risk management, and portfolio creation.",
+        "topics": [
+          "Investment instruments introduction",
+          "Risk assessment",
+          "Portfolio diversification",
+          "Market analysis fundamentals"
+        ]
+      },
+      "advanced": {
+        "title": "Advanced Strategies",
+        "description": "Advanced analysis techniques and strategy development for experienced investors.",
+        "topics": [
+          "Technical analysis",
+          "Fundamental analysis",
+          "Derivative instruments",
+          "Algorithmic investing"
+        ]
+      },
+      "market": {
+        "title": "Market Updates",
+        "description": "Current market analysis, economic indicators, and expert opinions.",
+        "topics": [
+          "Daily market analysis",
+          "Weekly reports",
+          "Expert webinars",
+          "Sector evaluations"
+        ]
+      }
+    },
+    "community": {
+      "title": "Community",
+      "subtitle": "Join our community of thousands of investors. Share your experiences, learn from experts, and achieve success together.",
+      "forums": {
+        "title": "Discussion Forums",
+        "description": "Active forum areas for investment strategies, market analysis, and experience sharing.",
+        "categories": {
+          "stocks": "Stock Commentary",
+          "crypto": "Cryptocurrency",
+          "real_estate": "Real Estate Investment"
+        }
+      },
+      "events": {
+        "title": "Expert Events",
+        "description": "Webinar, seminar, and workshop events organized with expert speakers in their fields.",
+        "types": {
+          "market_analysis": "Weekly Market Analysis",
+          "investment_strategies": "Investment Strategies Seminar",
+          "beginners_workshop": "Beginners Workshop"
+        }
+      }
+    },
+    "support": {
+      "title": "Support",
+      "subtitle": "Our 24/7 customer support team is always with you. We answer your questions, help with technical issues, and guide you in your investment decisions.",
+      "phone": {
+        "title": "Phone Support",
+        "description": "24/7 phone support line you can reach"
+      },
+      "live_chat": {
+        "title": "Live Chat",
+        "description": "Live chat support where you can get instant responses"
+      },
+      "email": {
+        "title": "Email Support",
+        "description": "Email support for your detailed questions"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": {
+        "account": {
+          "question": "How does the account opening process work?",
+          "answer": "Your account becomes active within 24 hours with identity verification."
+        },
+        "min_investment": {
+          "question": "What is the minimum investment amount?",
+          "answer": "You can start investing with a minimum of $500 for beginners."
+        },
+        "withdrawal": {
+          "question": "How long does the withdrawal process take?",
+          "answer": "Withdrawal requests are transferred to your account within 1-3 business days."
+        },
+        "advisory": {
+          "question": "Is there an investment advisory service?",
+          "answer": "Yes, you can request a free consultation from our expert advisors."
+        }
+      }
+    },
+    "metrics": {
+      "average_return": {
+        "title": "Average Return",
+        "value": "12.5%"
+      },
+      "customer_satisfaction": {
+        "title": "Customer Satisfaction",
+        "value": "95%"
+      },
+      "assets": {
+        "title": "Assets Under Management",
+        "value": "$2B+"
+      }
+    }
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "forgot_password": "Forgot Password?",
+    "login_with_google": "Continue with Google",
+    "create_account": "Create an Account",
+    "already_have_account": "Already have an account?",
+    "dont_have_account": "Don't have an account?",
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+    "logout": "Logout"
+  },
+  "portfolio": {
+    "my_investments": "My Investments",
+    "total_value": "Total Value",
+    "performance": "Performance",
+    "portfolio_empty": "Your portfolio is empty",
+    "add_investment": "Add Investment"
+  },
+  "currency": {
+    "converter": "Currency Converter",
+    "from": "From",
+    "to": "To",
+    "amount": "Amount",
+    "convert": "Convert",
+    "result": "Result",
+    "exchange_rate": "Exchange Rate",
+    "live_market": {
+      "title": "Live Market Data",
+      "subtitle": "Real-time prices and current investment opportunities",
+      "exchange_rates": "Exchange Rates",
+      "market_data": "Market Data",
+      "refresh": "Refresh",
+      "view_all": "View All",
+      "last_updated": "Last updated"
+    }
+  },
+  "errors": {
+    "invalid_email": "Please enter a valid email",
+    "invalid_password": "Password must be at least 6 characters",
+    "login_failed": "Login failed. Please try again.",
+    "signup_failed": "Sign up failed. Please try again."
+  }
+} 
